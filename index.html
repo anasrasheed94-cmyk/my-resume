@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anas Rasheed - Resume</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        .resume {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: #555;
+        }
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 20px;
+            color: #2c3e50;
+            border-left: 4px solid #3498db;
+            padding-left: 12px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .summary, .personal-info {
+            color: #555;
+            text-align: justify;
+        }
+        .skills-list, .languages-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
+        .skills-list li, .languages-list li {
+            background: #ecf0f1;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 2px solid #bdc3c7;
+        }
+        .job-title {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        .company {
+            font-weight: 600;
+            color: #34495e;
+        }
+        .date-location {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+        }
+        .responsibilities {
+            padding-left: 20px;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .declaration {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+        }
+        .signature {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        @media print {
+            body { background: #fff; padding: 0; }
+            .resume { box-shadow: none; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <!-- Header -->
+        <div class="header">
+            <h1>ANAS RASHEED</h1>
+            <div class="contact-info">
+                <span>📞 +91 9895446047</span>
+                <span>✉ anasrasheed94@gmail.com</span>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p class="summary">
+                Lead Developer with over 9 years of experience in designing, developing, and managing web, desktop, and mobile applications using C#.NET, WinForms, ASP.NET, WPF, and Xamarin Forms. Proven expertise in leading development teams, architecting scalable solutions, and managing full application lifecycles with SQL Server, MySQL, PostgreSQL, and SQLite. Adept at collaborating with cross-functional teams, mentoring developers, and delivering high-quality projects on time while ensuring best coding practices and performance optimization.
+            </p>
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+            <h2 class="section-title">Skills</h2>
+            <ul class="skills-list">
+                <li>Windows App Development</li>
+                <li>Web Development</li>
+                <li>Mobile App Development</li>
+                <li>SQL Database</li>
+                <li>UI Design</li>
+                <li>C#.NET</li>
+                <li>ASP.NET</li>
+                <li>WinForms</li>
+                <li>WPF</li>
+                <li>Xamarin Forms</li>
+                <li>SQL Server</li>
+                <li>MySQL</li>
+                <li>PostgreSQL</li>
+                <li>SQLite</li>
+            </ul>
+        </div>
+
+        <!-- Languages -->
+        <div class="section">
+            <h2 class="section-title">Languages</h2>
+            <ul class="languages-list">
+                <li>English</li>
+                <li>Hindi</li>
+                <li>Malayalam</li>
+                <li>Tamil</li>
+            </ul>
+        </div>
+
+        <!-- Experience -->
+        <div class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="job-title">Lead Developer</div>
+                <div class="company">PROMPTTECH GLOBAL PVT LTD</div>
+                <div class="date-location">Jun 2021 – Present | Technopark Campus, Kazhakkoottam, Trivandrum, Kerala, India</div>
+                <p class="responsibilities">Senior Software Developer specializing in C#.NET and ASP.NET with SQL databases.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Senior Software Developer</div>
+                <div class="company">INSPIRONZ IT SOLUTIONS</div>
+                <div class="date-location">Sep 2018 – May 2021 | Kundara, Kollam, Kerala, India</div>
+                <p class="responsibilities">Developed applications using WinForms, Xamarin Forms, ASP.NET in C#.NET with SQL Server and SQLite.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Software Developer</div>
+                <div class="company">PROMPTTECH MIDDLE EAST PVT LTD</div>
+                <div class="date-location">Nov 2016 – May 2018 | Ravipuram, Ernakulam, Kerala, India</div>
+                <p class="responsibilities">Worked on C#.NET development with SQL and MySQL databases.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Software Developer</div>
+                <div class="company">TECHNOMETRICS TECHNOLOGIES</div>
+                <div class="date-location">Nov 2015 – Nov 2016 | Kotarakkara, Kollam, Kerala, India</div>
+                <p class="responsibilities">Developed applications using C#.NET, WPF with SQL Server and PostgreSQL.</p>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="education-item">
+                <div class="job-title">B.E. Computer Science</div>
+                <div class="date-location">2010 – 2014 | PSN College of Engineering and Technology, Tirunelveli, Tamil Nadu, India</div>
+                <p>Anna University, Chennai</p>
+            </div>
+
+            <div class="education-item">
+                <div class="job-title">Higher Secondary</div>
+                <div class="date-location">2008 – 2010 | Govt. HSS Anchal East, Anchal, Kerala State</div>
+            </div>
+
+            <div class="education-item">
+                <div class="job-title">SSLC</div>
+                <div class="date-location">2008 | Govt. HSS Anchal East, Anchal, Kerala State</div>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section">
+            <h2 class="section-title">Projects Implemented</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Platform</th>
+                        <th>Back End</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Salon ERP, Laundry ERP, Retail ERP, Accounts Manager, Hypermarket ERP, Cleaning Service ERP, Salon Manager, Boutique Manager, Laundry Manager, Restaurant Manager, i-Gym Master, i-Lab Master, Mobile iT Master</td>
+                        <td>WinForms</td>
+                        <td>SQL Server 2012/2016/2008, MySQL</td>
+                    </tr>
+                    <tr>
+                        <td>Supermarket Manager, Billing Manager</td>
+                        <td>WPF</td>
+                        <td>PostgreSQL, MySQL</td>
+                    </tr>
+                    <tr>
+                        <td>Online Reporting, RPMall.in, Cashewinzapp.com, Adminjajis.inzapp.com</td>
+                        <td>ASP.NET</td>
+                        <td>SQL Server 2016/2008</td>
+                    </tr>
+                    <tr>
+                        <td>BI Tool Online Sync App, Online Appointment Service, Van Sales Services</td>
+                        <td>WCF</td>
+                        <td>SQL Server 2012</td>
+                    </tr>
+                    <tr>
+                        <td>Root Collection App, Restaurant App</td>
+                        <td>Xamarin Forms</td>
+                        <td>SQL Server 2008, SQLite</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Personal Info -->
+        <div class="section">
+            <h2 class="section-title">Personal Information</h2>
+            <ul class="personal-info">
+                <li><strong>DOB:</strong> 09-04-1991</li>
+                <li><strong>Age:</strong> 34 years</li>
+                <li><strong>Gender:</strong> Male</li>
+                <li><strong>Citizenship:</strong> Indian</li>
+                <li><strong>Marital Status:</strong> Married</li>
+                <li><strong>Address:</strong> Yaseen Villa, Kottukkal PO, Anchal</li>
+                <li><strong>Father:</strong> Abdul Rasheed</li>
+                <li><strong>Mother:</strong> Javinza</li>
+            </ul>
+        </div>
+
+        <!-- Declaration -->
+        <div class="declaration">
+            <p>I hereby declare that all the statements made in this profile are true and complete to the best of my knowledge and belief.</p>
+            <p class="signature">Anas Rasheed</p>
+        </div>
+    </div>
+</body>
+</html>
