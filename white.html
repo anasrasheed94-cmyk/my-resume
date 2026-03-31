@@ -292,6 +292,9 @@
                 size: A4;
                 margin: 2mm;
             }
+			 button {
+				display: none;
+			}
             
             body {
                 background: white;
@@ -357,6 +360,14 @@
     </style>
 </head>
 <body>
+
+<div style="text-align:center; margin:20px;">
+    <button onclick="downloadPDF()" 
+            style="padding:10px 20px; font-size:16px; cursor:pointer;">
+        Download as PDF
+    </button>
+</div>
+
     <div class="resume">
         <!-- LEFT SIDEBAR -->
         <div class="sidebar">
@@ -611,3 +622,9 @@
     </div>
 </body>
 </html>
+
+<script>
+    function downloadPDF() {
+        window.print();
+    }
+</script>
