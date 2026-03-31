@@ -17,437 +17,409 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #f5f5f5;
             font-size: 11pt;
-            line-height: 1.3;
+            line-height: 1.25;
             color: #333;
         }
         
-        .resume {
+        /* SCREEN VIEW */
+        .resume-container {
+            max-width: 210mm;
+            margin: 20px auto;
+        }
+        
+        .page {
             width: 210mm;
             min-height: 297mm;
-            margin: 20px auto;
             background: white;
-            display: flex;
+            margin-bottom: 20px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
         }
         
-        /* LEFT SIDEBAR - Light Blue */
-        .sidebar {
-            width: 32%;
-            padding-top: 10mm;
-			padding-right: 2mm;
-			padding-bottom: 10mm;
-			padding-left: 8mm;
-            color: #2c3e50;
-            font-size: 10pt;
+        /* PAGE 1 LAYOUT */
+        .page1-sidebar {
+            width: 30%;
+            float: left;
+            background: #f8fbfd;
+            padding: 4mm 3mm 4mm 5mm;
+            height: 289mm;
+            overflow: hidden;
         }
         
-        .photo-box {
-            text-align: LEFT;
-            margin-bottom: 5mm;
+        .page1-main {
+            width: 70%;
+            float: right;
+            padding: 4mm 6mm 4mm 6mm;
+            height: 289mm;
+            overflow: hidden;
         }
+        
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        
+        /* Sidebar Elements */
+        .photo-box { text-align: center; margin-bottom: 3mm; }
         
         .photo {
-            width: 50mm;
-            height: 50mm;
-            border-radius: 100px;
-            border: 1px solid #b8d4e8;
-            object-fit: cover;
+            width: 48mm; height: 48mm; border-radius: 50%;
+            border: 3px solid #b8d4e8; object-fit: cover;
+            background: #e8f1f7;
         }
         
-        .contact {
-            margin-bottom: 15mm;
-            padding-bottom: 8mm;
-            border-bottom: 1px solid #34495e;
+        .contact-info { 
+            margin-bottom: 4mm;
+            padding-bottom: 3mm;
+            border-bottom: 2px solid #bdc3c7;
         }
         
         .contact-item {
-            font-size: 10pt;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
+            font-size: 10pt; color: #2c3e50;
+            margin-bottom: 1.2mm; line-height: 1.3;
         }
         
-        .contact-item span {
-            margin-left: 6mm;
-        }
-        
-        .sidebar-section {
-            margin-bottom: 8mm;
-            page-break-inside: avoid;
-        }
+        .sidebar-section { margin-bottom: 3.5mm; }
         
         .sidebar-title {
-            font-size: 12pt;
-            color: #2c3e50;
-            font-weight: 700;
-            margin-bottom: 5mm;
-            text-transform: uppercase;
-            border-bottom: 1px solid #34495e;
-            padding-bottom: 2mm;
+            font-size: 12pt; color: #2c3e50; font-weight: 700;
+            margin-bottom: 2mm; text-transform: uppercase;
+            border-bottom: 2px solid #3498db; padding-bottom: 1mm;
         }
         
-        .sidebar-text {
-            font-size: 10pt;
-            color: #34495e;
-            text-align: justify;
-            line-height: 1.3;
+        .skill-list, .lang-list { list-style: none; }
+        .skill-list li, .lang-list li {
+            font-size: 10pt; color: #2c3e50;
+            margin-bottom: 0.8mm; line-height: 1.3;
         }
         
-        .lang-list, .skill-list {
-            list-style: none;
-            font-size: 10pt;
-            color: #2c3e50;
-        }
-        
-        .lang-list li, .skill-list li {
-            margin-bottom: 3mm;
-        }
-        
-        /* Personal Info Grid in Sidebar */
-        .personal-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2mm;
-            font-size: 9pt;
-            color: #2c3e50;
-        }
-        
-        .personal-item {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .label {
-            font-weight: 700;
-            color: #2c3e50;
-            margin-right: 3mm;
-            min-width: 60px;
-        }
-        
-        /* RIGHT MAIN CONTENT */
-        .main {
-            width: 68%;
-			padding-top: 15mm;
-			padding-right: 15mm;
-			padding-bottom: 15mm;
-			padding-left: 5mm;
-            background: white;
-        }
-        
+        /* Main Content Elements */
         .name {
-            font-size: 26pt;
-            color: #34495e;
-            font-weight: 700;
-            margin-bottom: 6mm;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            line-height: 1.2;
+            font-size: 28pt; color: #2c3e50; font-weight: 700;
+            margin-bottom: 4mm; text-transform: uppercase;
+            line-height: 1.1;
         }
         
-        .section {
-            margin-bottom: 10mm;
-            page-break-inside: avoid;
-        }
+        .section { margin-bottom: 3.5mm; }
         
         .section-title {
-            font-size: 16pt;
-            color: #34495e;
-            font-weight: 700;
-            margin-bottom: 5mm;
-            text-transform: uppercase;
-            border-bottom: 2px solid #b8d4e8;
-            padding-bottom: 2mm;
+            font-size: 15pt; color: #3498db; font-weight: 700;
+            margin-bottom: 2mm; text-transform: uppercase;
+            border-bottom: 3px solid #3498db; padding-bottom: 1mm;
         }
         
         .summary-text {
-            font-size: 11pt;
-            color: #555;
-            text-align: justify;
-            line-height: 1.4;
+            font-size: 10.5pt; color: #555;
+            text-align: justify; line-height: 1.3;
+            margin-bottom: 3mm;
         }
         
-        .exp-item {
-            margin-bottom: 8mm;
+        .exp-item { margin-bottom: 3mm; }
+        .exp-header {
+            display: flex; justify-content: space-between;
+            margin-bottom: 0.5mm;
+        }
+        .job-title { font-size: 12.5pt; font-weight: 700; color: #2c3e50; }
+        .date { font-size: 10pt; color: #7f8c8d; }
+        .company { font-size: 11pt; font-weight: 600; color: #34495e; margin-bottom: 0.5mm; }
+        .location { font-size: 10pt; color: #7f8c8d; font-style: italic; margin-bottom: 0.5mm; }
+        .description { font-size: 10pt; color: #555; line-height: 1.3; }
+        
+        .edu-item { margin-bottom: 2mm; }
+        .edu-degree { font-weight: 700; color: #2c3e50; font-size: 11pt; }
+        .edu-school { color: #34495e; font-size: 10.5pt; }
+        .edu-year { color: #7f8c8d; font-size: 10pt; font-style: italic; }
+        
+        /* PAGE 2 */
+        .page2-content {
+            padding: 7mm;
+            height: 289mm;
+            overflow: hidden;
+        }
+        
+        /* Projects - 3 Line Format */
+        .projects-section { margin-bottom: 5mm; }
+        
+        .project-card {
+            padding: 1.5mm 2mm;
+            margin-bottom: 1.5mm;
+            border-left: 3px solid #3498db;
+            background: #fafcfd;
             page-break-inside: avoid;
         }
         
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1mm;
+        .project-card:nth-child(even) {
+            background: #f0f5f9;
         }
         
-        .job-title {
-            font-size: 12pt;
+        .project-name {
+            font-size: 9.5pt;
             font-weight: 700;
             color: #2c3e50;
+            margin-bottom: 0.5mm;
         }
         
-        .date {
-            font-size: 10pt;
-            color: #7f8c8d;
-            white-space: nowrap;
-        }
-        
-        .company {
-            font-size: 11pt;
+        .project-env {
+            font-size: 9pt;
+            color: #3498db;
             font-weight: 600;
-            color: #34495e;
-            margin-bottom: 1mm;
+            margin-bottom: 0.3mm;
         }
         
-        .location {
-            font-size: 10pt;
-            color: #7f8c8d;
-            font-style: italic;
-            margin-bottom: 2mm;
-        }
-        
-        .description {
-            font-size: 10pt;
+        .project-scope {
+            font-size: 9pt;
             color: #555;
-            padding-left: 8mm;
-            line-height: 1.3;
+            line-height: 1.25;
         }
         
-        .edu-item {
-            margin-bottom: 2mm;
+        /* Personal Info */
+        .personal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3mm;
+            font-size: 10pt;
+            margin-bottom: 5mm;
         }
         
-        .degree {
-            font-size: 11pt;
+        .personal-item { display: flex; margin-bottom: 0.8mm; }
+        .personal-label {
             font-weight: 700;
+            min-width: 75px;
             color: #2c3e50;
         }
         
-        .school {
-            font-size: 10pt;
-            color: #34495e;
-        }
-        
-        .year {
-            font-size: 10pt;
-            color: #7f8c8d;
-        }
-		
-		.full-section {
-    width: 210mm;
-    margin: 20px auto;
-    background: white;
-    padding: 10mm;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-        
-        /* Projects Table */
-        .projects-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 8.5pt;
-            margin-top: 2mm;
-			 table-layout: fixed; 
-        }
-        
-        .projects-table th {
-            background: #34495e;
-            color: white;
-            padding: 1.5mm;
-            text-align: left;
-            font-weight: 700;
-            border: 1px solid #000;
-        }
-        
-        .projects-table td {
-            padding: 1.5mm;
-            border: 1px solid #000;
-            vertical-align: top;
-            line-height: 1.3;
-			word-wrap: break-word;
-			overflow-wrap: break-word;
-        }
-        
-        .projects-table ul {
-            margin: 0;
-            padding-left: 10mm;
-        }
-        
-        .projects-table li {
-            margin-bottom: 1mm;
-        }
-
-        
+        /* Declaration */
         .declaration {
-            margin-top: 10mm;
-            padding: 8mm;
-            border-top: 1px solid #b8d4e8;
-            font-style: italic;
+            position: absolute;
+            bottom: 10mm;
+            left: 7mm;
+            right: 7mm;
+            padding: 5mm;
+            border-top: 2px solid #bdc3c7;
             text-align: center;
             font-size: 10pt;
             color: #555;
-            page-break-inside: avoid;
         }
         
         .signature {
-            margin-top: 2mm;
+            margin-top: 3mm;
             font-weight: 700;
             color: #2c3e50;
-            font-style: normal;
-            font-size: 12pt;
+            font-size: 13pt;
         }
-		
-		.personal-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 equal columns */
-    gap: 10mm;
-}
-
-.personal-column {
-    display: flex;
-    flex-direction: column;
-    gap: 2mm;
-}
-
-.personal-item {
-    display: flex;
-    align-items: flex-start;
-}
-
-.label {
-    font-weight: 700;
-    min-width: 75px;
-}
-		
         
-        /* PRINT */
+        /* PRINT CONTROLS */
+        .print-controls {
+            text-align: center;
+            margin: 20px;
+            padding: 15px;
+            background: #e8f4f8;
+            border-radius: 8px;
+        }
+        
+        .print-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .print-btn:hover { background: #2980b9; }
+        
+        .instructions {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* ========================================= */
+        /* PRINT MEDIA QUERY */
+        /* ========================================= */
         @media print {
-    @page {
-        size: A4;
-        margin: 0; /* important */
-    }
-
-
-    body {
-	font-family: 'Segoe UI', Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: white;
-    }
-
-    .resume {
-        width: 210mm;
-        min-height: 297mm;
-        margin: 0;
-        box-shadow: none;
-    }
-
-    .sidebar {
-        width: 32% !important;
-        padding: 10mm 2mm 10mm 8mm; /* SAME as screen */
-    }
-
-    .main {
-        width: 68% !important;
-        padding: 15mm 15mm 15mm 5mm; /* SAME as screen */
-    }
-
-    .full-section {
-        width: 210mm;
-        margin: 0;
-        padding: 10mm;
-        box-shadow: none;
-    }
-
-    button {
-        display: none;
-    }
-
+            @page {
+                size: A4;
+                margin: 3mm;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+                font-size: 12pt;
+                line-height: 1.2;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .print-controls { display: none !important; }
+            
+            .resume-container { margin: 0; max-width: none; }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                page-break-after: always;
+                break-after: page;
+            }
+            
+            .page:last-child { page-break-after: auto; break-after: auto; }
+            
+            .page1-sidebar {
+                width: 30% !important;
+                height: 289mm !important;
+                padding: 4mm 3mm 4mm 5mm !important;
+                background: #f8fbfd !important;
+                float: left !important;
+                overflow: hidden !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .page1-main {
+                width: 70% !important;
+                height: 289mm !important;
+                padding: 4mm 6mm 4mm 6mm !important;
+                float: right !important;
+                overflow: hidden !important;
+            }
+            
+            .page2-content {
+                padding: 7mm !important;
+                height: 289mm !important;
+                overflow: hidden !important;
+            }
+            
+            /* MAXIMUM FONTS FOR PRINT */
+            .name { font-size: 26pt !important; }
+            .section-title { font-size: 14pt !important; margin-bottom: 1.5mm !important; }
+            .summary-text { font-size: 10pt !important; line-height: 1.25 !important; }
+            .job-title { font-size: 12pt !important; }
+            .company { font-size: 11pt !important; }
+            .description { font-size: 10pt !important; line-height: 1.25 !important; }
+            .edu-degree { font-size: 11pt !important; }
+            .edu-school { font-size: 10.5pt !important; }
+            .edu-year { font-size: 10pt !important; }
+            .date { font-size: 9.5pt !important; }
+            .location { font-size: 9.5pt !important; }
+            
+            /* Project Card Fonts */
+            .project-card { padding: 1.2mm 2mm !important; margin-bottom: 1.2mm !important; }
+            .project-name { font-size: 9pt !important; margin-bottom: 0.4mm !important; }
+            .project-env { font-size: 8.5pt !important; margin-bottom: 0.2mm !important; }
+            .project-scope { font-size: 8.5pt !important; line-height: 1.2 !important; }
+            
+            .contact-item { font-size: 9.5pt !important; }
+            .skill-list li, .lang-list li { font-size: 9.5pt !important; margin-bottom: 0.7mm !important; }
+            .sidebar-title { font-size: 11.5pt !important; }
+            .personal-label { font-size: 10pt !important; }
+            .personal-item { font-size: 9.5pt !important; }
+            .declaration { font-size: 9.5pt !important; bottom: 10mm !important; }
+            .signature { font-size: 12pt !important; }
+            .photo { width: 45mm !important; height: 45mm !important; }
+            
+            a { color: #2c3e50; text-decoration: none; }
+        }
+        
+        @media screen {
+            .page { max-width: 210mm; }
         }
     </style>
 </head>
 <body>
 
-<div style="text-align:center; margin:20px;">
-    <button onclick="downloadPDF()" 
-            style="padding:10px 20px; font-size:16px; cursor:pointer;">
-        Download as PDF
-    </button>
-</div>
+    <!-- PRINT CONTROLS (Screen Only) -->
+    <div class="print-controls">
+        <button onclick="window.print()" class="print-btn">🖨️ Download as PDF</button>
+        <p class="instructions">
+            <strong>⚠️ IMPORTANT:</strong> Paper: A4 | Margins: Minimum | Scale: 95% | Background: ON
+        </p>
+    </div>
 
-    <div class="resume">
-        <!-- LEFT SIDEBAR -->
-        <div class="sidebar">
-            <div class="photo-box">
-                <!-- Replace src with your actual photo path -->
-                <img src="profile-photo.jpg" alt="Anas Rasheed" class="photo">
+    <div class="resume-container">
+        <!-- ==================== PAGE 1 ==================== -->
+        <div class="page clearfix">
+            <!-- SIDEBAR -->
+            <div class="page1-sidebar">
+                <div class="photo-box">
+                    <img src="profile-photo.jpg" alt="Anas Rasheed" class="photo" 
+                         onerror="this.style.background='#dce4ec';this.alt='[Photo]'">
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">📞 +91 98954 46047</div>
+                    <div class="contact-item">✉ anasrasheed94@gmail.com</div>
+                    <div class="contact-item">🌐 anasrasheed94-cmyk.github.io</div>
+                    <div class="contact-item">💼 linkedin.com/in/anasrasheed94</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Technical Skills</h3>
+                    <ul class="skill-list">
+                        <li>✓ C#.NET / .NET Core</li>
+                        <li>✓ WPF / WinForms</li>
+                        <li>✓ Xamarin Forms</li>
+                        <li>✓ ASP.NET / Web API</li>
+                        <li>✓ MVC / MVVM</li>
+                        <li>✓ Entity Framework</li>
+                        <li>✓ HTML5 / CSS3 / JS</li>
+                        <li>✓ MS SQL / MySQL</li>
+                        <li>✓ PostgreSQL / SQLite</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Tools</h3>
+                    <ul class="skill-list">
+                        <li>✓ Visual Studio</li>
+                        <li>✓ SQL Server SSMS</li>
+                        <li>✓ Crystal Reports</li>
+                        <li>✓ Postman</li>
+                        <li>✓ Git / Version Control</li>
+                        <li>✓ AI Development Tools</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Languages</h3>
+                    <ul class="lang-list">
+                        <li>✓ English (Professional)</li>
+                        <li>✓ Hindi (Fluent)</li>
+                        <li>✓ Malayalam (Native)</li>
+                        <li>✓ Tamil (Conversational)</li>
+                    </ul>
+                </div>
+				<!-- PERSONAL INFO -->
+                <div class="sidebar-section">
+                    <h2 class="sidebar-title">Personal Information</h2>
+                     <ul class="lang-list">
+                            <li><b>DOB: 		</b>April 9, 1991</li>
+                            <li><b>Age: 		</b>34 Years</li>
+                            <li><b>Gender: 		</b>Male</li>
+                            <li><b>Nationality:	</b>Indian</li>
+                            <li><b>Status: 		</b>Married</li>
+                            <li><b>Father: 		</b>Abdul Rasheed</li>
+                            <li><b>Mother: 		</b>Javinza</li>
+                            <li><b>Address: 	</b>Yaseen Villa, kottukkal po Anchal, Kollam, Kerala</li>
+                    </ul>
+                </div>
             </div>
-            
-			<div class="sidebar-section">
-				<ul class="lang-list">
-					<li>📞 +91 9895446047</li>
-					<li>✉ anasrasheed94@gmail.com</li>
-					<li>pf: <a href="https://anasrasheed94-cmyk.github.io">anasrasheed94-cmyk.github.io</a></li>
-					<li>in: <a href="linkedin.com/in/anasrasheed94">linkedin.com/in/anasrasheed94</a></li>
-				</ul>
-			</div>
+			
 
-            <div class="sidebar-section">
-				<h3 class="sidebar-title">Skills</h3>
-				<ul class="skill-list">
-					<li>✓ Desktop App Development</li>
-					<li>✓ Web Development</li>
-					<li>✓ Mobile App Development</li>
-					<li>✓ WPF</li>
-					<li>✓ WinForms</li>
-					<li>✓ ASP.NET</li>
-					<li>✓ web API</li>
-					<li>✓ Xamarin Forms</li>
-					<li>✓ C#.NET</li>
-					<li>✓ MVVM</li>
-					<li>✓ MVC</li>
-					<li>✓ Entity Framework</li>
-					<li>✓ CSS</li>
-					<li>✓ JavaScript</li>
-					<li>✓ MS SQL</li>
-					<li>✓ MySQL</li>
-					<li>✓ PostgreSQL</li>
-					<li>✓ SQLite</li>
-					<li>✓ HTML</li>
-					<li>✓ XAML</li>
-					
-				</ul>
-			</div>
-			<div class="sidebar-section">
-				<h3 class="sidebar-title">Tools</h3>
-				<ul class="skill-list">
-					<li>✓ Visual Studio</li>
-					<li>✓ SQL server</li>
-					<li>✓ Crystal Report</li>
-					<li>✓ PostMan</li>
-					<li>✓ AI Tools and Models</li>
-				</ul>
-			</div>
-
-			<div class="sidebar-section">
-				<h3 class="sidebar-title">Languages</h3>
-				<ul class="lang-list">
-					<li>✓ English</li>
-					<li>✓ Hindi</li>
-					<li>✓ Malayalam</li>
-					<li>✓ Tamil</li>
-				</ul>
-			</div>
-
-           
-		</div>
-    
         
-        <!-- RIGHT MAIN CONTENT -->
-        <div class="main">
-            <h1 class="name">ANAS RASHEED</h1>
-            
-            <div class="section">
-                <h2 class="section-title">Professional Summary</h2>
-                <p class="summary-text">
-                    <b>Lead Developer</b> with <b>9+</b> years of experience in designing, developing, and managing <b>desktop, web and mobile apps</b> using 
+            <!-- MAIN CONTENT -->
+            <div class="page1-main">
+                <h1 class="name">ANAS RASHEED</h1>
+                
+                <div class="section">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <p class="summary-text">
+                       <b>Lead Developer</b> with <b>9+</b> years of experience in designing, developing, and managing <b>desktop, web and mobile apps</b> using 
 					<b> WPF, WinForms, ASP.NET , Xamarin Forms and C#.NET</b>. 
 					Proven expertise in leading development teams, architecting scalable solutions, 
 					and managing full application lifecycles including 
@@ -457,179 +429,148 @@
 					Proven track record in delivering high-quality Windows, Mobile and web applications, 
 					leveraging strong UI design skills and effective collaboration to drive project success.
 					Committed to achieving results and enhancing user experiences.
-                </p>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">Experience</h2>
-                
-                <div class="exp-item">
-                    <div class="exp-header">
-                        <div class="job-title">Lead Developer</div>
-                        <div class="date">2021 JUN – Current</div>
-                    </div>
-                    <div class="company">PROMPTTECH GLOBAL PVT LTD</div>
-                    <div class="location">Technopark Campus, Kazhakkoottam, Trivandrum, Kerala, India</div>
-                    <div class="description">As a Lead Developer in C#.NET ,WPF, WinForms AND ASP.NET with SQL Server</div>
+                    </p>
                 </div>
                 
-                <div class="exp-item">
-                    <div class="exp-header">
-                        <div class="job-title">Senior Software Developer</div>
-                        <div class="date">2018 SEP – 2021 May</div>
+                <div class="section">
+                    <h2 class="section-title">Experience</h2>
+                    
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="job-title">Lead Developer</div>
+                            <div class="date">Jun 2021 – Present</div>
+                        </div>
+                        <div class="company">PROMPTTECH GLOBAL PVT LTD</div>
+                        <div class="location">Technopark, Trivandrum</div>
+                        <div class="description">Lead enterprise apps using C#.NET, WPF, WinForms, ASP.NET. Manage 5 developers.</div>
                     </div>
-                    <div class="company">INSPIRONZ IT SOLUTIONS</div>
-                    <div class="location">Kundara, Kollam, Kerala, India</div>
-                    <div class="description">As a Senior Software Developer in WinForms , WPF,  Xamarin Forms, ASP.NET in C#.NET with SQL Server and SQLite</div>
+                    
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="job-title">Senior Software Developer</div>
+                            <div class="date">Sep 2018 – May 2021</div>
+                        </div>
+                        <div class="company">INSPIRONZ IT SOLUTIONS</div>
+                        <div class="location">Kundara, Kollam</div>
+                        <div class="description">Developed cross-platform apps using Xamarin, WPF, WinForms, ASP.NET with SQL Server.</div>
+                    </div>
+                    
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="job-title">Software Developer</div>
+                            <div class="date">Nov 2016 – May 2018</div>
+                        </div>
+                        <div class="company">PROMPTTECH MIDDLE EAST</div>
+                        <div class="location">Ravipuram, Ernakulam</div>
+                        <div class="description">Built Windows desktop apps using C#.NET, WinForms, WPF with SQL and MySQL.</div>
+                    </div>
+                    
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="job-title">Software Developer</div>
+                            <div class="date">Nov 2015 – Nov 2016</div>
+                        </div>
+                        <div class="company">TECHNOMETRICS TECHNOLOGIES</div>
+                        <div class="location">Kotarakkara, Kollam</div>
+                        <div class="description">Developed desktop apps using C#.NET, WPF with PostgreSQL backend.</div>
+                    </div>
                 </div>
-                
-                <div class="exp-item">
-                    <div class="exp-header">
-                        <div class="job-title">Software Developer</div>
-                        <div class="date">2016 NOV – 2018 MAY</div>
+
+                <!-- EDUCATION -->
+                <div class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="edu-item">
+                        <div class="edu-degree">B.E. Computer Science</div>
+                        <div class="edu-school">PSN College of Engineering, Tirunelveli</div>
+                        <div class="edu-year">Anna University | 2010 – 2014</div>
                     </div>
-                    <div class="company">PROMPTTECH MIDDLE EAST PVT LTD</div>
-                    <div class="location">Ravipuram, Ernakulam, Kerala, India</div>
-                    <div class="description">As a Software Developer in C#.NET WinForms, WPF with SQL and MySQL</div>
-                </div>
-                
-                <div class="exp-item">
-                    <div class="exp-header">
-                        <div class="job-title">Software Developer</div>
-                        <div class="date">2015 NOV – 2016 NOV</div>
+                    <div class="edu-item">
+                        <div class="edu-degree">Higher Secondary</div>
+                        <div class="edu-school">Govt. HSS Anchal East, Kerala</div>
+                        <div class="edu-year">State Board | 2008 – 2010</div>
                     </div>
-                    <div class="company">TECHNOMETRICS TECHNOLOGIES</div>
-                    <div class="location">Kotarakkara, Kollam, Kerala, India</div>
-                    <div class="description">Software Developer in C#.NET, WPF with PostgreSQL</div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">Education</h2>
-                
-                <div class="edu-item">
-					<div class="exp-header">
-                         <div class="degree">B.E. Computer Science</div>
-                         <div class="year">2010 – 2014</div>
+                    <div class="edu-item">
+                        <div class="edu-degree">SSLC</div>
+                        <div class="edu-school">Govt. HSS Anchal East, Kerala</div>
+                        <div class="edu-year">State Board | 2008</div>
                     </div>
-                    <div class="school">PSN College of Engineering and Technology, Tirunelveli, Tamil Nadu, India</div>
-                    <div class="school">Anna University, Chennai</div>
-                </div>
-                
-                <div class="edu-item">
-					<div class="exp-header">
-                        <div class="degree">Higher Secondary</div>
-						<div class="year">2008 – 2010</div>
-                    </div>
-                    <div class="school">Govt. HSS Anchal East, Anchal, Kerala State</div>
-                </div>
-                
-                <div class="edu-item">
-					<div class="exp-header">
-                         <div class="degree">SSLC</div>
-                    <div class="year">2008</div>
-                    </div>
-                   
-                    <div class="school">Govt. HSS Anchal East, Anchal, Kerala State</div>
                 </div>
             </div>
         </div>
-</div>
-		  <div class="full-section">
 
-    <!-- PROJECTS -->
-    <div class="section">
-        <h2 class="section-title">Projects Implemented</h2>
+        <!-- ==================== PAGE 2 ==================== -->
+        <div class="page">
+            <div class="page2-content">
+                
+                <!-- PROJECTS - 3 LINE FORMAT -->
+				<div class="section projects-section">
+					<h2 class="section-title">Projects Implemented</h2>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Salon ERP</div>
+						<div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
+						<div class="project-scope">Scope: Desktop ERP for salon management with Appointment scheduling (local + Web-API sync), POS with cash drawer, Service/Package management with room & staff tracking, Inventory (purchase/sales/consumption/damage), HR with commission slabs, and Loyalty cards with barcode scanning—hybrid architecture syncing local/cloud operations.</div>
+					</div>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Laundry ERP</div>
+						<div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
+						<div class="project-scope">Scope: Desktop ERP for laundry operations with billing, delivery scheduling, WhatsApp notifications, and real-time dashboard. Web-API integrated mobile collector app, barcode tag generation & basket scanning for stage-wise tracking (wash/dry/iron/pack), automated customer updates, delivery with proof-of-delivery & payment collection—hybrid cloud-synced architecture.</div>
+					</div>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Accounts & HRM Manager</div>
+						<div class="project-env">Environment: ASP.NET / SQL Server / Crystal Report</div>
+						<div class="project-scope">Scope: Desktop HR & Payroll system with integrated accounting, biometric attendance, configurable leave workflows, real-time payroll (tax/bonus/compliance), and analytics dashboard for headcount, payroll costs & attendance trends—secure role-based architecture supporting multi-branch sync and cross-department data integration.</div>
+					</div>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Hypermarket ERP</div>
+						<div class="project-env">Environment: WPF / SQL Server</div>
+						<div class="project-scope">Scope: Desktop Hypermarket ERP with POS billing, Supplier Management, Inventory Control (batch/expiry/reordering), and Multi-Store Synchronization. Mobile Van Sales module for route/order/delivery tracking via Web-API. Predictive analytics for demand forecasting, inventory alerts & customer insights—enabling data-driven stock optimization and supply chain planning.</div>
+					</div>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Company CRM (prompttechglobal.com)</div>
+						<div class="project-env">Environment: ASP.NET MVC / SQL Server</div>
+						<div class="project-scope">Scope: Web-based CRM for lead capture, qualification & assignment; visual sales pipeline with stage tracking & follow-up reminders; customer interaction history (calls/emails/meetings); and analytics dashboards for conversion rates, productivity & revenue forecasting—supported by role-based access control and data export capabilities.</div>
+					</div>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Mall Management System (rpmall.in)</div>
+						<div class="project-env">Environment: ASP.NET / SQL Server</div>
+						<div class="project-scope">Scope: Web-based Mall Management with shop allocation engine, floor-plan visualization & lease-based rent calculation; Tenant Management (onboarding/contracts/documents); automated Payment Tracking with invoices/late fees; and Occupancy Reporting with vacancy alerts & lease expiry notifications—role-based dashboard for multi-property management.</div>
+					</div>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Cashew Factory</div>
+						<div class="project-env">Environment: ASP.NET / SQL Server</div>
+						<div class="project-scope">Scope: Web-based ERP for cashew processing: Production Planning (shelling/drying/peeling/grading), Workforce Management with piece-rate wages, Quality Control with yield analysis. Multi-Warehouse/Country support with currency conversion, Shipping Management with export docs & customs compliance. Analytics for efficiency, cost-per-grade & profitability insights.</div>
+					</div>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Restaurant Mobile App</div>
+						<div class="project-env">Environment: Xamarin Forms / Web API</div>
+						<div class="project-scope">Scope: Mobile app for dine-in/takeaway with digital menu, online ordering, table reservation & waitlist; order tracking with kitchen status, push notifications, reviews/ratings, location-based branch selection & multi-language/currency support. RESTful API integration with POS/kitchen systems for real-time sync and analytics on order trends & preferences.</div>
+					</div>
+					
+					<div class="project-card">
+						<div class="project-name">📁 Gym Management</div>
+						<div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
+						<div class="project-scope">Scope: Desktop Gym Management with Membership plans (tiered/freeze/renewal), Trainer Scheduling, Workout Tracking with progress logs, Payment Processing with recurring billing & Crystal Reports invoices, biometric/RFID attendance, visitor management & analytics dashboards—role-based interface supporting multi-branch sync and real-time data visibility.</div>
+					</div>
+				</div>
 
-        <table class="projects-table">
-            <thead>
-                <tr>
-                    <th width="50%">PROJECT</th>
-                    <th width="50%">DESCRIPTION</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Salon ERP</td>
-                    <td>Desktop-based ERP solution for salon management including POS, inventory, HR, and CRM using WPF/WinForms.</td>
-                </tr>
-                <tr>
-                    <td>Laundry ERP</td>
-                    <td>Laundry system with order tracking, billing, and delivery management.</td>
-                </tr>
-                <tr>
-                    <td>Retail ERP</td>
-                    <td>Retail solution for sales, stock, and financial tracking.</td>
-                </tr>
-                <tr>
-                    <td>Accounts and HRM Manager</td>
-                    <td>HR and payroll management system with reporting.</td>
-                </tr>
-                <tr>
-                    <td>Hypermarket ERP</td>
-                    <td>POS billing, supplier and inventory management system.</td>
-                </tr>
-                <tr>
-                    <td>Company CRM</td>
-                    <td>ASP.NET based CRM for managing leads and sales.</td>
-                </tr>
-                <tr>
-                    <td>Mall Management</td>
-                    <td>Shop allocation and rent tracking system.</td>
-                </tr>
-                <tr>
-                    <td>Cashew Factory</td>
-                    <td>Production and workforce management system.</td>
-                </tr>
-                <tr>
-                    <td>Restaurant App</td>
-                    <td>Mobile app for order taking and billing.</td>
-                </tr>
-                <tr>
-                    <td>Gym App</td>
-                    <td>Membership and trainer management system.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                
 
-    <!-- PERSONAL INFO (MOVED HERE) -->
-    <div class="section">
-    <h2 class="section-title">Personal Info</h2>
-
-    <div class="personal-grid">
-        
-        <!-- LEFT COLUMN -->
-        <div class="personal-column">
-            <div class="personal-item"><span class="label">DOB:</span> 09-04-1991</div>
-            <div class="personal-item"><span class="label">Age:</span> 34 years</div>
-            <div class="personal-item"><span class="label">Gender:</span> Male</div>
-            <div class="personal-item"><span class="label">Citizenship:</span> Indian</div>
+                <!-- DECLARATION -->
+                <div class="declaration">
+                    I hereby declare that all information provided is true and correct to the best of my knowledge.
+                    <div class="signature">Anas Rasheed</div>
+                </div>
+            </div>
         </div>
-
-        <!-- RIGHT COLUMN -->
-        <div class="personal-column">
-            <div class="personal-item"><span class="label">Status:</span> Married</div>
-            <div class="personal-item"><span class="label">Father:</span> Abdul Rasheed</div>
-            <div class="personal-item"><span class="label">Mother:</span> Javinza</div>
-            <div class="personal-item"><span class="label">Address:</span> Yaseen Villa, Kollam, Kerala</div>
-        </div>
-
-    </div>
-</div>
-
-    <!-- DECLARATION -->
-    <div class="declaration">
-        I hereby declare that all the statements made in this profile are true and complete to the best of my knowledge and belief.
-        <div class="signature">Anas Rasheed</div>
     </div>
 
-</div>
 </body>
 </html>
-
-<script>
-    function downloadPDF() {
-        window.print();
-    }
-</script>
