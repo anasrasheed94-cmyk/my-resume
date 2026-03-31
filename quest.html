@@ -50,7 +50,7 @@
             width: 50mm;
             height: 50mm;
             border-radius: 100px;
-            border: 3px solid #b8d4e8;
+            border: 1px solid #b8d4e8;
             object-fit: cover;
         }
         
@@ -72,7 +72,7 @@
         }
         
         .sidebar-section {
-            margin-bottom: 12mm;
+            margin-bottom: 8mm;
             page-break-inside: avoid;
         }
         
@@ -138,7 +138,7 @@
             font-size: 26pt;
             color: #34495e;
             font-weight: 700;
-            margin-bottom: 10mm;
+            margin-bottom: 6mm;
             letter-spacing: 1px;
             text-transform: uppercase;
             line-height: 1.2;
@@ -229,12 +229,20 @@
             font-size: 10pt;
             color: #7f8c8d;
         }
+		
+		.full-section {
+    width: 210mm;
+    margin: 20px auto;
+    background: white;
+    padding: 10mm;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
         
         /* Projects Table */
         .projects-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 9pt;
+            font-size: 8.5pt;
             margin-top: 2mm;
 			 table-layout: fixed; 
         }
@@ -242,14 +250,14 @@
         .projects-table th {
             background: #34495e;
             color: white;
-            padding: 2mm;
+            padding: 1.5mm;
             text-align: left;
             font-weight: 700;
             border: 1px solid #000;
         }
         
         .projects-table td {
-            padding: 2mm;
+            padding: 1.5mm;
             border: 1px solid #000;
             vertical-align: top;
             line-height: 1.3;
@@ -285,78 +293,85 @@
             font-style: normal;
             font-size: 12pt;
         }
+		
+		.personal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 equal columns */
+    gap: 10mm;
+}
+
+.personal-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+}
+
+.personal-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.label {
+    font-weight: 700;
+    min-width: 75px;
+}
+		
         
         /* PRINT */
         @media print {
-            @page {
-                size: A4;
-                margin: 2mm;
-            }
-            
-            body {
-                background: white;
-                font-size: 11pt;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            
-            .resume {
-                margin: 0;
-                box-shadow: none;
-                width: 100%;
-                min-height: auto;
-            }
-            
-            .sidebar {
-                width: 30% !important;
-				padding-top: 10mm;
-				padding-right: 2mm;
-				padding-bottom: 10mm;
-				padding-left: 0mm;
-            }
-            
-            .main {
-                width: 70% !important;
-				padding-top: 5mm;
-				padding-right: 0mm;
-				padding-bottom: 5mm;
-				padding-left: 2mm;
-            }
-            
-            .name {
-                font-size: 24pt;
-                margin-bottom: 8mm;
-            }
-            
-            .section {
-                margin-bottom: 8mm;
-            }
-            
-            .sidebar-section {
-                margin-bottom: 10mm;
-            }
-            
-            .photo {
-                width: 50mm;
-                height: 50mm;
-            }
-            
-            /* Prevent awkward breaks */
-            .exp-item, .edu-item, .sidebar-section {
-                page-break-inside: avoid;
-            }
-            
-            .projects-table tr {
-                page-break-inside: auto;
-            }
-            
-            .declaration {
-                margin-top: 1mm;
-            }
+    @page {
+        size: A4;
+        margin: 0; /* important */
+    }
+
+
+    body {
+	font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    .resume {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        box-shadow: none;
+    }
+
+    .sidebar {
+        width: 32% !important;
+        padding: 10mm 2mm 10mm 8mm; /* SAME as screen */
+    }
+
+    .main {
+        width: 68% !important;
+        padding: 15mm 15mm 15mm 5mm; /* SAME as screen */
+    }
+
+    .full-section {
+        width: 210mm;
+        margin: 0;
+        padding: 10mm;
+        box-shadow: none;
+    }
+
+    button {
+        display: none;
+    }
+
         }
     </style>
 </head>
 <body>
+
+<div style="text-align:center; margin:20px;">
+    <button onclick="downloadPDF()" 
+            style="padding:10px 20px; font-size:16px; cursor:pointer;">
+        Download as PDF
+    </button>
+</div>
+
     <div class="resume">
         <!-- LEFT SIDEBAR -->
         <div class="sidebar">
@@ -410,6 +425,7 @@
 					<li>✓ AI Tools and Models</li>
 				</ul>
 			</div>
+
 			<div class="sidebar-section">
 				<h3 class="sidebar-title">Languages</h3>
 				<ul class="lang-list">
@@ -420,20 +436,9 @@
 				</ul>
 			</div>
 
-            <div class="sidebar-section">
-			<h3 class="sidebar-title">Personal Info</h3>
-			<div class="personal-grid">
-				<div class="personal-item"><span class="label">DOB:</span> 09-04-1991</div>
-				<div class="personal-item"><span class="label">Age:</span> 34 years</div>
-				<div class="personal-item"><span class="label">Gender:</span> Male</div>
-				<div class="personal-item"><span class="label">Citizenship:</span> Indian</div>
-				<div class="personal-item"><span class="label">Status:</span> Married</div>
-				<div class="personal-item"><span class="label">Father:</span> Abdul Rasheed</div>
-				<div class="personal-item"><span class="label">Mother:</span> Javinza</div>
-				<div class="personal-item"><span class="label">Address:</span> Yaseen Villa, Kottukkal PO, Anchal, Kollam, Kerala, PIN:691306</div>
-			</div>
+           
 		</div>
-        </div>
+    
         
         <!-- RIGHT MAIN CONTENT -->
         <div class="main">
@@ -528,86 +533,103 @@
                     <div class="school">Govt. HSS Anchal East, Anchal, Kerala State</div>
                 </div>
             </div>
-            
-            <div class="section">
-                <h2 class="section-title">Projects Implemented</h2>
-                <table class="projects-table">
-                    <thead>
-                        <tr>
-                            <th width="50%">PROJECTS</th>
-                            <th width="50%">PLATFORM & Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-								<ul style="list-style-type: none; padding-left: 0;">
-									<li>1.	Salon ERP</li>
-									<li>2.	Laundry ERP</li>
-									<li>3.	Retail ERP</li>
-									<li>4.	Accounts and HRM Manager</li>
-									<li>5.	Hypermarket/Supermarket ERP</li>
-									<li>6.	Cleaning Service ERP</li>
-									<li>7.	Boutique Manager</li>
-									<li>8.	Restaurant Management App</li>
-									<li>9.	Gym Management App</li>
-									<li>10.	Medical Lab Management App</li>
-									<li>11.	Mobile/Laptop Service Management</li>
-									<li>12.	Billing Manager</li>
-								</ul>
-							</td>
-                            <td>
-								An integrated Desktop business software solutions to streamline POS sales, Inventory, finance, human resources,Custom operations ,Reporting & analysis and customer relationship management.
-								with <b>WPF, WinForms </b> powered by <b>SQL Server, MySQL, PostgreSQL</b>.
-								The project implemented in <b>N-Tier architecture</b> with <b>Factory and Repository</b>.
-								The reporting and print is handled in <b>Crystal report</b> .
-							</td>
-                        </tr>
-
-                        <tr>
-                            <td>
-								<ul style="list-style-type: none; padding-left: 0;">
-									<li>1.	Company CRM (Prompttechglobal.com)</li>
-									<li>2.	Online Dashboard & Reporting</li>
-									<li>3.	Mall Management (RPMall.in)</li>
-									<li>4.	Cashew Management Factory(Cashew.inzapp.com)</li>
-									<li>5.	Shops Administrative Portal(Adminjajis.inzapp.com)</li>
-									<li>6.	BI Tool Sync App(WCF)</li>
-									<li>7.	Salon Appointment Service (WCF)</li>
-									<li>8.	Van Sales Services (WCF)</li>
-								</ul>
-							</td>
-                            <td>
-								A collection of web-based business solutions built with <b>ASP.NET and WCF</b>, powered by <b>SQL Server</b> 
-								for better use in companies, mall, factory,Branches,warehouses etc.
-								The project implemented in <b>MVC, DAOs ,N-Tier architecture</b> with <b>Factory and Repository Pattern</b>
-							</td>
-                        </tr>
-                        <tr>
-                            <td>
-								<ul style="list-style-type: none; padding-left: 0;">
-									<li>1.	Root Collection App</li>
-									<li>2.	Restaurant App</li>
-									<li>3.	Order Taking App</li>
-									<li>4.	Mini Sales App</li>
-								</ul>
-							</td>
-                            <td>
-								Mobile applications developed using <b>Xamarin Forms</b>, 
-								supported by <b>Web-API, SQL Server and SQLite</b>, 
-								for efficient business management.
-								The project implemented in <b>MVVM architecture</b>. 
-							</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="declaration">
-                I hereby declare that all the statements made in this profile are true and complete to the best of my knowledge and belief.
-                <div class="signature">Anas Rasheed</div>
-            </div>
         </div>
+</div>
+		  <div class="full-section">
+
+    <!-- PROJECTS -->
+    <div class="section">
+        <h2 class="section-title">Projects Implemented</h2>
+
+        <table class="projects-table">
+            <thead>
+                <tr>
+                    <th width="50%">PROJECT</th>
+                    <th width="50%">DESCRIPTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Salon ERP</td>
+                    <td>Desktop-based ERP solution for salon management including POS, inventory, HR, and CRM using WPF/WinForms.</td>
+                </tr>
+                <tr>
+                    <td>Laundry ERP</td>
+                    <td>Laundry system with order tracking, billing, and delivery management.</td>
+                </tr>
+                <tr>
+                    <td>Retail ERP</td>
+                    <td>Retail solution for sales, stock, and financial tracking.</td>
+                </tr>
+                <tr>
+                    <td>Accounts and HRM Manager</td>
+                    <td>HR and payroll management system with reporting.</td>
+                </tr>
+                <tr>
+                    <td>Hypermarket ERP</td>
+                    <td>POS billing, supplier and inventory management system.</td>
+                </tr>
+                <tr>
+                    <td>Company CRM</td>
+                    <td>ASP.NET based CRM for managing leads and sales.</td>
+                </tr>
+                <tr>
+                    <td>Mall Management</td>
+                    <td>Shop allocation and rent tracking system.</td>
+                </tr>
+                <tr>
+                    <td>Cashew Factory</td>
+                    <td>Production and workforce management system.</td>
+                </tr>
+                <tr>
+                    <td>Restaurant App</td>
+                    <td>Mobile app for order taking and billing.</td>
+                </tr>
+                <tr>
+                    <td>Gym App</td>
+                    <td>Membership and trainer management system.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
+    <!-- PERSONAL INFO (MOVED HERE) -->
+    <div class="section">
+    <h2 class="section-title">Personal Info</h2>
+
+    <div class="personal-grid">
+        
+        <!-- LEFT COLUMN -->
+        <div class="personal-column">
+            <div class="personal-item"><span class="label">DOB:</span> 09-04-1991</div>
+            <div class="personal-item"><span class="label">Age:</span> 34 years</div>
+            <div class="personal-item"><span class="label">Gender:</span> Male</div>
+            <div class="personal-item"><span class="label">Citizenship:</span> Indian</div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="personal-column">
+            <div class="personal-item"><span class="label">Status:</span> Married</div>
+            <div class="personal-item"><span class="label">Father:</span> Abdul Rasheed</div>
+            <div class="personal-item"><span class="label">Mother:</span> Javinza</div>
+            <div class="personal-item"><span class="label">Address:</span> Yaseen Villa, Kollam, Kerala</div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- DECLARATION -->
+    <div class="declaration">
+        I hereby declare that all the statements made in this profile are true and complete to the best of my knowledge and belief.
+        <div class="signature">Anas Rasheed</div>
+    </div>
+
+</div>
 </body>
 </html>
+
+<script>
+    function downloadPDF() {
+        window.print();
+    }
+</script>
