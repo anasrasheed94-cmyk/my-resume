@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anas Rasheed - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            font-size: 11pt;
+            line-height: 1.3;
+            color: #333;
+        }
+        
+        .resume {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: white;
+            display: flex;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* LEFT SIDEBAR - Light Blue */
+        .sidebar {
+            width: 32%;
+            padding-top: 10mm;
+			padding-right: 2mm;
+			padding-bottom: 10mm;
+			padding-left: 8mm;
+            color: #2c3e50;
+            font-size: 10pt;
+        }
+        
+        .photo-box {
+            text-align: LEFT;
+            margin-bottom: 5mm;
+        }
+        
+        .photo {
+            width: 50mm;
+            height: 50mm;
+            border-radius: 100px;
+            border: 1px solid #b8d4e8;
+            object-fit: cover;
+        }
+        
+        .contact {
+            margin-bottom: 15mm;
+            padding-bottom: 8mm;
+            border-bottom: 1px solid #34495e;
+        }
+        
+        .contact-item {
+            font-size: 10pt;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-item span {
+            margin-left: 6mm;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 12mm;
+            page-break-inside: avoid;
+        }
+        
+        .sidebar-title {
+            font-size: 12pt;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 5mm;
+            text-transform: uppercase;
+            border-bottom: 1px solid #34495e;
+            padding-bottom: 2mm;
+        }
+        
+        .sidebar-text {
+            font-size: 10pt;
+            color: #34495e;
+            text-align: justify;
+            line-height: 1.3;
+        }
+        
+        .lang-list, .skill-list {
+            list-style: none;
+            font-size: 10pt;
+            color: #2c3e50;
+        }
+        
+        .lang-list li, .skill-list li {
+            margin-bottom: 3mm;
+        }
+        
+        /* Personal Info Grid in Sidebar */
+        .personal-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2mm;
+            font-size: 9pt;
+            color: #2c3e50;
+        }
+        
+        .personal-item {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .label {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-right: 3mm;
+            min-width: 60px;
+        }
+        
+        /* RIGHT MAIN CONTENT */
+        .main {
+            width: 68%;
+			padding-top: 15mm;
+			padding-right: 15mm;
+			padding-bottom: 15mm;
+			padding-left: 5mm;
+            background: white;
+        }
+        
+        .name {
+            font-size: 26pt;
+            color: #34495e;
+            font-weight: 700;
+            margin-bottom: 10mm;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        
+        .section {
+            margin-bottom: 10mm;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 16pt;
+            color: #34495e;
+            font-weight: 700;
+            margin-bottom: 5mm;
+            text-transform: uppercase;
+            border-bottom: 2px solid #b8d4e8;
+            padding-bottom: 2mm;
+        }
+        
+        .summary-text {
+            font-size: 11pt;
+            color: #555;
+            text-align: justify;
+            line-height: 1.4;
+        }
+        
+        .exp-item {
+            margin-bottom: 8mm;
+            page-break-inside: avoid;
+        }
+        
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1mm;
+        }
+        
+        .job-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .date {
+            font-size: 10pt;
+            color: #7f8c8d;
+            white-space: nowrap;
+        }
+        
+        .company {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 1mm;
+        }
+        
+        .location {
+            font-size: 10pt;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 2mm;
+        }
+        
+        .description {
+            font-size: 10pt;
+            color: #555;
+            padding-left: 8mm;
+            line-height: 1.3;
+        }
+        
+        .edu-item {
+            margin-bottom: 2mm;
+        }
+        
+        .degree {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .school {
+            font-size: 10pt;
+            color: #34495e;
+        }
+        
+        .year {
+            font-size: 10pt;
+            color: #7f8c8d;
+        }
+        
+        /* Projects Table */
+        .projects-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 2mm;
+			 table-layout: fixed; 
+        }
+        
+        .projects-table th {
+            background: #34495e;
+            color: white;
+            padding: 2mm;
+            text-align: left;
+            font-weight: 700;
+            border: 1px solid #000;
+        }
+        
+        .projects-table td {
+            padding: 2mm;
+            border: 1px solid #000;
+            vertical-align: top;
+            line-height: 1.3;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+        }
+        
+        .projects-table ul {
+            margin: 0;
+            padding-left: 10mm;
+        }
+        
+        .projects-table li {
+            margin-bottom: 1mm;
+        }
+
+        
+        .declaration {
+            margin-top: 10mm;
+            padding: 8mm;
+            border-top: 1px solid #b8d4e8;
+            font-style: italic;
+            text-align: center;
+            font-size: 10pt;
+            color: #555;
+            page-break-inside: avoid;
+        }
+        
+        .signature {
+            margin-top: 2mm;
+            font-weight: 700;
+            color: #2c3e50;
+            font-style: normal;
+            font-size: 12pt;
+        }
+        
+        /* PRINT */
+        @media print {
+            @page {
+                size: A4;
+                margin: 2mm;
+            }
+            
+            body {
+                background: white;
+                font-size: 11pt;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .resume {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                min-height: auto;
+            }
+            
+            .sidebar {
+                width: 30% !important;
+				padding-top: 10mm;
+				padding-right: 2mm;
+				padding-bottom: 10mm;
+				padding-left: 0mm;
+            }
+            
+            .main {
+                width: 70% !important;
+				padding-top: 5mm;
+				padding-right: 0mm;
+				padding-bottom: 5mm;
+				padding-left: 2mm;
+            }
+            
+            .name {
+                font-size: 24pt;
+                margin-bottom: 8mm;
+            }
+            
+            .section {
+                margin-bottom: 8mm;
+            }
+            
+            .sidebar-section {
+                margin-bottom: 10mm;
+            }
+            
+            .photo {
+                width: 50mm;
+                height: 50mm;
+            }
+            
+            /* Prevent awkward breaks */
+            .exp-item, .edu-item, .sidebar-section {
+                page-break-inside: avoid;
+            }
+            
+            .projects-table tr {
+                page-break-inside: auto;
+            }
+            
+            .declaration {
+                margin-top: 1mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <!-- LEFT SIDEBAR -->
+        <div class="sidebar">
+            <div class="photo-box">
+                <!-- Replace src with your actual photo path -->
+                <img src="profile-photo.jpg" alt="Anas Rasheed" class="photo">
+            </div>
+            
+			<div class="sidebar-section">
+				<ul class="lang-list">
+					<li>📞 +91 9895446047</li>
+					<li>✉ anasrasheed94@gmail.com</li>
+					<li>pf: <a href="https://anasrasheed94-cmyk.github.io">anasrasheed94-cmyk.github.io</a></li>
+					<li>in: <a href="linkedin.com/in/anasrasheed94">linkedin.com/in/anasrasheed94</a></li>
+				</ul>
+			</div>
+
+            <div class="sidebar-section">
+				<h3 class="sidebar-title">Skills</h3>
+				<ul class="skill-list">
+					<li>✓ Desktop App Development</li>
+					<li>✓ Web Development</li>
+					<li>✓ Mobile App Development</li>
+					<li>✓ WPF</li>
+					<li>✓ WinForms</li>
+					<li>✓ ASP.NET</li>
+					<li>✓ web API</li>
+					<li>✓ Xamarin Forms</li>
+					<li>✓ C#.NET</li>
+					<li>✓ MVVM</li>
+					<li>✓ MVC</li>
+					<li>✓ Entity Framework</li>
+					<li>✓ CSS</li>
+					<li>✓ JavaScript</li>
+					<li>✓ MS SQL</li>
+					<li>✓ MySQL</li>
+					<li>✓ PostgreSQL</li>
+					<li>✓ SQLite</li>
+					<li>✓ HTML</li>
+					<li>✓ XAML</li>
+					
+				</ul>
+			</div>
+			<div class="sidebar-section">
+				<h3 class="sidebar-title">Tools</h3>
+				<ul class="skill-list">
+					<li>✓ Visual Studio</li>
+					<li>✓ SQL server</li>
+					<li>✓ Crystal Report</li>
+					<li>✓ PostMan</li>
+					<li>✓ AI Tools and Models</li>
+				</ul>
+			</div>
+			<div class="sidebar-section">
+				<h3 class="sidebar-title">Languages</h3>
+				<ul class="lang-list">
+					<li>✓ English</li>
+					<li>✓ Hindi</li>
+					<li>✓ Malayalam</li>
+					<li>✓ Tamil</li>
+				</ul>
+			</div>
+
+            <div class="sidebar-section">
+			<h3 class="sidebar-title">Personal Info</h3>
+			<div class="personal-grid">
+				<div class="personal-item"><span class="label">DOB:</span> 09-04-1991</div>
+				<div class="personal-item"><span class="label">Age:</span> 34 years</div>
+				<div class="personal-item"><span class="label">Gender:</span> Male</div>
+				<div class="personal-item"><span class="label">Citizenship:</span> Indian</div>
+				<div class="personal-item"><span class="label">Status:</span> Married</div>
+				<div class="personal-item"><span class="label">Father:</span> Abdul Rasheed</div>
+				<div class="personal-item"><span class="label">Mother:</span> Javinza</div>
+				<div class="personal-item"><span class="label">Address:</span> Yaseen Villa, Kottukkal PO, Anchal, Kollam, Kerala, PIN:691306</div>
+			</div>
+		</div>
+        </div>
+        
+        <!-- RIGHT MAIN CONTENT -->
+        <div class="main">
+            <h1 class="name">ANAS RASHEED</h1>
+            
+            <div class="section">
+                <h2 class="section-title">Professional Summary</h2>
+                <p class="summary-text">
+                    <b>Lead Developer</b> with <b>9+</b> years of experience in designing, developing, and managing <b>desktop, web and mobile apps</b> using 
+					<b> WPF, WinForms, ASP.NET , Xamarin Forms and C#.NET</b>. 
+					Proven expertise in leading development teams, architecting scalable solutions, 
+					and managing full application lifecycles including 
+					<b>MS-SQL, My-SQL, PostgreSQL and SQLite</b>.
+					Adapt to collaborating with cross-functional teams,
+					mentoring developers, and delivering high-quality projects on time while ensuring best coding practices and performance optimization.
+					Proven track record in delivering high-quality Windows, Mobile and web applications, 
+					leveraging strong UI design skills and effective collaboration to drive project success.
+					Committed to achieving results and enhancing user experiences.
+                </p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Experience</h2>
+                
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <div class="job-title">Lead Developer</div>
+                        <div class="date">2021 JUN – Current</div>
+                    </div>
+                    <div class="company">PROMPTTECH GLOBAL PVT LTD</div>
+                    <div class="location">Technopark Campus, Kazhakkoottam, Trivandrum, Kerala, India</div>
+                    <div class="description">As a Lead Developer in C#.NET ,WPF, WinForms AND ASP.NET with SQL Server</div>
+                </div>
+                
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <div class="job-title">Senior Software Developer</div>
+                        <div class="date">2018 SEP – 2021 May</div>
+                    </div>
+                    <div class="company">INSPIRONZ IT SOLUTIONS</div>
+                    <div class="location">Kundara, Kollam, Kerala, India</div>
+                    <div class="description">As a Senior Software Developer in WinForms , WPF,  Xamarin Forms, ASP.NET in C#.NET with SQL Server and SQLite</div>
+                </div>
+                
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <div class="job-title">Software Developer</div>
+                        <div class="date">2016 NOV – 2018 MAY</div>
+                    </div>
+                    <div class="company">PROMPTTECH MIDDLE EAST PVT LTD</div>
+                    <div class="location">Ravipuram, Ernakulam, Kerala, India</div>
+                    <div class="description">As a Software Developer in C#.NET WinForms, WPF with SQL and MySQL</div>
+                </div>
+                
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <div class="job-title">Software Developer</div>
+                        <div class="date">2015 NOV – 2016 NOV</div>
+                    </div>
+                    <div class="company">TECHNOMETRICS TECHNOLOGIES</div>
+                    <div class="location">Kotarakkara, Kollam, Kerala, India</div>
+                    <div class="description">Software Developer in C#.NET, WPF with PostgreSQL</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="edu-item">
+					<div class="exp-header">
+                         <div class="degree">B.E. Computer Science</div>
+                         <div class="year">2010 – 2014</div>
+                    </div>
+                    <div class="school">PSN College of Engineering and Technology, Tirunelveli, Tamil Nadu, India</div>
+                    <div class="school">Anna University, Chennai</div>
+                </div>
+                
+                <div class="edu-item">
+					<div class="exp-header">
+                        <div class="degree">Higher Secondary</div>
+						<div class="year">2008 – 2010</div>
+                    </div>
+                    <div class="school">Govt. HSS Anchal East, Anchal, Kerala State</div>
+                </div>
+                
+                <div class="edu-item">
+					<div class="exp-header">
+                         <div class="degree">SSLC</div>
+                    <div class="year">2008</div>
+                    </div>
+                   
+                    <div class="school">Govt. HSS Anchal East, Anchal, Kerala State</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Projects Implemented</h2>
+                <table class="projects-table">
+                    <thead>
+                        <tr>
+                            <th width="50%">PROJECTS</th>
+                            <th width="50%">PLATFORM & Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+								<ul style="list-style-type: none; padding-left: 0;">
+									<li>1.	Salon ERP</li>
+									<li>2.	Laundry ERP</li>
+									<li>3.	Retail ERP</li>
+									<li>4.	Accounts and HRM Manager</li>
+									<li>5.	Hypermarket/Supermarket ERP</li>
+									<li>6.	Cleaning Service ERP</li>
+									<li>7.	Boutique Manager</li>
+									<li>8.	Restaurant Management App</li>
+									<li>9.	Gym Management App</li>
+									<li>10.	Medical Lab Management App</li>
+									<li>11.	Mobile/Laptop Service Management</li>
+									<li>12.	Billing Manager</li>
+								</ul>
+							</td>
+                            <td>
+								An integrated Desktop business software solutions to streamline POS sales, Inventory, finance, human resources,Custom operations ,Reporting & analysis and customer relationship management.
+								with <b>WPF, WinForms </b> powered by <b>SQL Server, MySQL, PostgreSQL</b>.
+								The project implemented in <b>N-Tier architecture</b> with <b>Factory and Repository</b>.
+								The reporting and print is handled in <b>Crystal report</b> .
+							</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+								<ul style="list-style-type: none; padding-left: 0;">
+									<li>1.	Company CRM (Prompttechglobal.com)</li>
+									<li>2.	Online Dashboard & Reporting</li>
+									<li>3.	Mall Management (RPMall.in)</li>
+									<li>4.	Cashew Management Factory(Cashew.inzapp.com)</li>
+									<li>5.	Shops Administrative Portal(Adminjajis.inzapp.com)</li>
+									<li>6.	BI Tool Sync App(WCF)</li>
+									<li>7.	Salon Appointment Service (WCF)</li>
+									<li>8.	Van Sales Services (WCF)</li>
+								</ul>
+							</td>
+                            <td>
+								A collection of web-based business solutions built with <b>ASP.NET and WCF</b>, powered by <b>SQL Server</b> 
+								for better use in companies, mall, factory,Branches,warehouses etc.
+								The project implemented in <b>MVC, DAOs ,N-Tier architecture</b> with <b>Factory and Repository Pattern</b>
+							</td>
+                        </tr>
+                        <tr>
+                            <td>
+								<ul style="list-style-type: none; padding-left: 0;">
+									<li>1.	Root Collection App</li>
+									<li>2.	Restaurant App</li>
+									<li>3.	Order Taking App</li>
+									<li>4.	Mini Sales App</li>
+								</ul>
+							</td>
+                            <td>
+								Mobile applications developed using <b>Xamarin Forms</b>, 
+								supported by <b>Web-API, SQL Server and SQLite</b>, 
+								for efficient business management.
+								The project implemented in <b>MVVM architecture</b>. 
+							</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="declaration">
+                I hereby declare that all the statements made in this profile are true and complete to the best of my knowledge and belief.
+                <div class="signature">Anas Rasheed</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
