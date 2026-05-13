@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anas Rasheed - Resume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="photo-data.js"></script>
     <style>
         * {
             margin: 0;
@@ -19,6 +21,15 @@
             font-size: 11pt;
             line-height: 1.3;
             color: #333;
+        }
+        
+        a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
         }
         
         .resume {
@@ -356,16 +367,37 @@
             .declaration {
                 margin-top: 1mm;
             }
+            
+            a { color: #3498db !important; text-decoration: underline !important; }
+            .no-pdf { display: none !important; }
         }
+        
+        .print-controls {
+            text-align: center;
+            margin: 20px;
+            padding: 15px;
+            background: #e8f4f8;
+            border-radius: 8px;
+        }
+        
+        .print-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .print-btn:hover { background: #2980b9; }
     </style>
 </head>
 <body>
 
-<div style="text-align:center; margin:20px;">
-    <button onclick="downloadPDF()" 
-            style="padding:10px 20px; font-size:16px; cursor:pointer;">
-        Download as PDF
-    </button>
+<div class="print-controls no-pdf">
+    <button id="downloadBtn" onclick="generatePDF()" class="print-btn">📥 Direct Download PDF</button>
+    <button onclick="window.print()" class="print-btn" style="background: #7f8c8d; margin-left: 10px;">🖨️ Print Dialog</button>
 </div>
 
     <div class="resume">
@@ -373,15 +405,16 @@
         <div class="sidebar">
             <div class="photo-box">
                 <!-- Replace src with your actual photo path -->
-                <img src="profile-photo.jpg" alt="Anas Rasheed" class="photo">
+                <img id="profilePhoto" src="profile-photo.jpg" alt="Anas Rasheed" class="photo" 
+                     onerror="this.style.background='#dce4ec';this.alt='[Photo]'">
             </div>
             
 			<div class="sidebar-section">
 				<ul class="lang-list">
-					<li>📞 +91 9895446047</li>
-					<li>✉ anasrasheed94@gmail.com</li>
-					<li>pf: <a href="https://anasrasheed94-cmyk.github.io">anasrasheed94-cmyk.github.io</a></li>
-					<li>in: <a href="linkedin.com/in/anasrasheed94">linkedin.com/in/anasrasheed94</a></li>
+					<li>📞 <a href="tel:+919895446047">+91 9895446047</a></li>
+					<li>✉ <a href="mailto:anasrasheed94@gmail.com">anasrasheed94@gmail.com</a></li>
+					<li>pf: <a href="https://anasrasheed94-cmyk.github.io" target="_blank">anasrasheed94-cmyk.github.io</a></li>
+					<li>in: <a href="https://linkedin.com/in/anasrasheed94" target="_blank">linkedin.com/in/anasrasheed94</a></li>
 				</ul>
 			</div>
 
@@ -578,9 +611,9 @@
                         <tr>
                             <td>
 								<ul style="list-style-type: none; padding-left: 0;">
-									<li>1.	Company CRM (Prompttechglobal.com)</li>
+									<li>1.	<a href="https://prompttechglobal.com" target="_blank">Company CRM</a> (Prompttechglobal.com)</li>
 									<li>2.	Online Dashboard & Reporting</li>
-									<li>3.	Mall Management (RPMall.in)</li>
+									<li>3.	<a href="https://rpmall.in" target="_blank">Mall Management</a> (RPMall.in)</li>
 									<li>4.	Cashew Management Factory(Cashew.inzapp.com)</li>
 									<li>5.	Shops Administrative Portal(Adminjajis.inzapp.com)</li>
 									<li>6.	BI Tool Sync App(WCF)</li>
@@ -620,11 +653,37 @@
             </div>
         </div>
     </div>
+    <script>
+        // Load profile photo from external data if available
+        if (typeof profilePhotoBase64 !== 'undefined') {
+            document.getElementById('profilePhoto').src = profilePhotoBase64;
+        }
+
+        function generatePDF() {
+            const element = document.querySelector('.resume');
+            const btn = document.getElementById('downloadBtn');
+            
+            btn.innerHTML = "⏳ Generating...";
+            btn.disabled = true;
+
+            const opt = {
+                margin:       0,
+                filename:     'Anas_Rasheed_Resume_White.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                btn.innerHTML = "📥 Direct Download PDF";
+                btn.disabled = false;
+            }).catch(err => {
+                console.warn("Direct download restricted:", err); const msg = "?? Local Security Block Detected\n\nBrowsers often block automatic downloads when opening files directly from a folder (file://).\n\nWould you like to use the Print Dialog instead? (Select 'Save as PDF' in the printer list)"; if (confirm(msg)) { window.print(); }
+                btn.innerHTML = "📥 Direct Download PDF";
+                btn.disabled = false;
+            });
+        }
+    </script>
 </body>
 </html>
-
-<script>
-    function downloadPDF() {
-        window.print();
-    }
-</script>

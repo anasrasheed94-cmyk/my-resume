@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anas Rasheed - Resume</title>
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- External Photo Data to keep HTML clean -->
+    <script src="photo-data.js"></script>
     <style>
         * {
             margin: 0;
@@ -12,135 +17,222 @@
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
-        
+
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #f5f5f5;
-            font-size: 11pt;
-            line-height: 1.25;
             color: #333;
+            line-height: 1.5;
         }
-        
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
         /* SCREEN VIEW */
         .resume-container {
             max-width: 210mm;
             margin: 20px auto;
         }
-        
+
+        @media screen {
+            .page {
+                margin-bottom: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+
         .page {
             width: 210mm;
-            min-height: 297mm;
+            height: 296mm;
             background: white;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 0;
             position: relative;
+            overflow: hidden;
         }
-        
+
         /* PAGE 1 LAYOUT */
         .page1-sidebar {
             width: 30%;
             float: left;
             background: #f8fbfd;
             padding: 4mm 3mm 4mm 5mm;
-            height: 289mm;
+            height: 288mm;
             overflow: hidden;
         }
-        
+
         .page1-main {
             width: 70%;
             float: right;
             padding: 4mm 6mm 4mm 6mm;
-            height: 289mm;
+            height: 288mm;
             overflow: hidden;
         }
-        
+
         .clearfix::after {
             content: "";
             clear: both;
             display: table;
         }
-        
+
         /* Sidebar Elements */
-        .photo-box { text-align: center; margin-bottom: 3mm; }
-        
+        .photo-box {
+            text-align: center;
+            margin-bottom: 3mm;
+        }
+
         .photo {
-            width: 48mm; height: 48mm; border-radius: 50%;
-            border: 3px solid #b8d4e8; object-fit: cover;
+            width: 48mm;
+            height: 48mm;
+            border-radius: 50%;
+            border: 3px solid #b8d4e8;
+            object-fit: cover;
             background: #e8f1f7;
         }
-        
-        .contact-info { 
+
+        .contact-info {
             margin-bottom: 4mm;
             padding-bottom: 3mm;
             border-bottom: 2px solid #bdc3c7;
         }
-        
+
         .contact-item {
-            font-size: 10pt; color: #2c3e50;
-            margin-bottom: 1.2mm; line-height: 1.3;
+            font-size: 10pt;
+            color: #2c3e50;
+            margin-bottom: 1.2mm;
+            line-height: 1.3;
         }
-        
-        .sidebar-section { margin-bottom: 3.5mm; }
-        
+
         .sidebar-title {
-            font-size: 12pt; color: #2c3e50; font-weight: 700;
-            margin-bottom: 2mm; text-transform: uppercase;
-            border-bottom: 2px solid #3498db; padding-bottom: 1mm;
+            font-size: 11pt;
+            color: #3498db;
+            font-weight: 700;
+            margin-bottom: 2mm;
+            text-transform: uppercase;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 1mm;
         }
-        
-        .skill-list, .lang-list { list-style: none; }
-        .skill-list li, .lang-list li {
-            font-size: 10pt; color: #2c3e50;
-            margin-bottom: 0.8mm; line-height: 1.3;
+
+        .skill-list,
+        .lang-list {
+            list-style: none;
         }
-        
+
+        .skill-list li,
+        .lang-list li {
+            font-size: 10pt;
+            color: #2c3e50;
+            margin-bottom: 0.8mm;
+            line-height: 1.3;
+        }
+
         /* Main Content Elements */
         .name {
-            font-size: 28pt; color: #2c3e50; font-weight: 700;
-            margin-bottom: 4mm; text-transform: uppercase;
+            font-size: 28pt;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 4mm;
+            text-transform: uppercase;
             line-height: 1.1;
         }
-        
-        .section { margin-bottom: 3.5mm; }
-        
-        .section-title {
-            font-size: 15pt; color: #3498db; font-weight: 700;
-            margin-bottom: 2mm; text-transform: uppercase;
-            border-bottom: 3px solid #3498db; padding-bottom: 1mm;
+
+        .section {
+            margin-bottom: 3.5mm;
         }
-        
+
+        .section-title {
+            font-size: 15pt;
+            color: #3498db;
+            font-weight: 700;
+            margin-bottom: 2mm;
+            text-transform: uppercase;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 1mm;
+        }
+
         .summary-text {
-            font-size: 10.5pt; color: #555;
-            text-align: justify; line-height: 1.3;
+            font-size: 10.5pt;
+            color: #555;
+            text-align: justify;
+            line-height: 1.3;
             margin-bottom: 3mm;
         }
-        
-        .exp-item { margin-bottom: 3mm; }
+
+        .exp-item {
+            margin-bottom: 3mm;
+        }
+
         .exp-header {
-            display: flex; justify-content: space-between;
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 0.5mm;
         }
-        .job-title { font-size: 12.5pt; font-weight: 700; color: #2c3e50; }
-        .date { font-size: 10pt; color: #7f8c8d; }
-        .company { font-size: 11pt; font-weight: 600; color: #34495e; margin-bottom: 0.5mm; }
-        .location { font-size: 10pt; color: #7f8c8d; font-style: italic; margin-bottom: 0.5mm; }
-        .description { font-size: 10pt; color: #555; line-height: 1.3; }
-        
-        .edu-item { margin-bottom: 2mm; }
-        .edu-degree { font-weight: 700; color: #2c3e50; font-size: 11pt; }
-        .edu-school { color: #34495e; font-size: 10.5pt; }
-        .edu-year { color: #7f8c8d; font-size: 10pt; font-style: italic; }
-        
+
+        .job-title {
+            font-size: 12.5pt;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .date {
+            font-size: 10pt;
+            color: #7f8c8d;
+        }
+
+        .company {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 0.5mm;
+        }
+
+        .location {
+            font-size: 10pt;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 0.5mm;
+        }
+
+        .description {
+            font-size: 10pt;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .edu-item {
+            margin-bottom: 2mm;
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 11pt;
+        }
+
+        .edu-school {
+            color: #34495e;
+            font-size: 10.5pt;
+        }
+
+        .edu-year {
+            color: #7f8c8d;
+            font-size: 10pt;
+            font-style: italic;
+        }
+
         /* PAGE 2 */
         .page2-content {
             padding: 7mm;
-            height: 289mm;
+            height: 282mm;
             overflow: hidden;
         }
-        
+
         /* Projects - 3 Line Format */
-        .projects-section { margin-bottom: 5mm; }
-        
+        .projects-section {
+            margin-bottom: 5mm;
+        }
+
         .project-card {
             padding: 1.5mm 2mm;
             margin-bottom: 1.5mm;
@@ -148,31 +240,31 @@
             background: #fafcfd;
             page-break-inside: avoid;
         }
-        
+
         .project-card:nth-child(even) {
             background: #f0f5f9;
         }
-        
+
         .project-name {
             font-size: 9.5pt;
             font-weight: 700;
             color: #2c3e50;
             margin-bottom: 0.5mm;
         }
-        
+
         .project-env {
             font-size: 9pt;
             color: #3498db;
             font-weight: 600;
             margin-bottom: 0.3mm;
         }
-        
+
         .project-scope {
             font-size: 9pt;
             color: #555;
             line-height: 1.25;
         }
-        
+
         /* Personal Info */
         .personal-grid {
             display: grid;
@@ -181,163 +273,106 @@
             font-size: 10pt;
             margin-bottom: 5mm;
         }
-        
-        .personal-item { display: flex; margin-bottom: 0.8mm; }
+
+        .personal-item {
+            display: flex;
+            margin-bottom: 0.8mm;
+        }
+
         .personal-label {
             font-weight: 700;
-            min-width: 75px;
             color: #2c3e50;
+            width: 32mm;
         }
-        
-        /* Declaration */
-        .declaration {
-            position: absolute;
-            bottom: 10mm;
-            left: 7mm;
-            right: 7mm;
-            padding: 5mm;
-            border-top: 2px solid #bdc3c7;
-            text-align: center;
-            font-size: 10pt;
+
+        .personal-value {
             color: #555;
         }
-        
+
+        .declaration {
+            margin-top: 5mm;
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 9.5pt;
+            text-align: center;
+        }
+
         .signature {
-            margin-top: 3mm;
             font-weight: 700;
             color: #2c3e50;
-            font-size: 13pt;
+            font-size: 12pt;
+            margin-top: 2mm;
         }
-        
+
         /* PRINT CONTROLS */
         .print-controls {
-            text-align: center;
-            margin: 20px;
+            position: sticky;
+            top: 0;
+            background: #fff;
             padding: 15px;
-            background: #e8f4f8;
-            border-radius: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .print-btn {
-            padding: 12px 24px;
+            padding: 10px 25px;
             font-size: 16px;
             cursor: pointer;
-            background: #3498db;
-            color: white;
             border: none;
             border-radius: 5px;
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+            transition: 0.3s;
         }
-        
-        .print-btn:hover { background: #2980b9; }
-        
+
+        .print-btn:hover {
+            background: #2980b9;
+        }
+
         .instructions {
             margin-top: 10px;
-            font-size: 12px;
+            font-size: 12pt;
             color: #666;
         }
-        
-        /* ========================================= */
-        /* PRINT MEDIA QUERY */
-        /* ========================================= */
+
         @media print {
-            @page {
-                size: A4;
-                margin: 3mm;
+            .no-print {
+                display: none !important;
             }
-            
+
             body {
-                margin: 0;
-                padding: 0;
                 background: white;
-                font-size: 12pt;
-                line-height: 1.2;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
             }
-            
-            .print-controls { display: none !important; }
-            
-            .resume-container { margin: 0; max-width: none; }
-            
+
+            .resume-container {
+                margin: 0;
+                max-width: none;
+            }
+
             .page {
                 margin: 0;
                 box-shadow: none;
-                width: 210mm;
-                height: 297mm;
                 page-break-after: always;
-                break-after: page;
             }
-            
-            .page:last-child { page-break-after: auto; break-after: auto; }
-            
-            .page1-sidebar {
-                width: 30% !important;
-                height: 289mm !important;
-                padding: 4mm 3mm 4mm 5mm !important;
-                background: #f8fbfd !important;
-                float: left !important;
-                overflow: hidden !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+
+            .page:last-child {
+                page-break-after: auto;
             }
-            
-            .page1-main {
-                width: 70% !important;
-                height: 289mm !important;
-                padding: 4mm 6mm 4mm 6mm !important;
-                float: right !important;
-                overflow: hidden !important;
-            }
-            
-            .page2-content {
-                padding: 7mm !important;
-                height: 289mm !important;
-                overflow: hidden !important;
-            }
-            
-            /* MAXIMUM FONTS FOR PRINT */
-            .name { font-size: 26pt !important; }
-            .section-title { font-size: 14pt !important; margin-bottom: 1.5mm !important; }
-            .summary-text { font-size: 10pt !important; line-height: 1.25 !important; }
-            .job-title { font-size: 12pt !important; }
-            .company { font-size: 11pt !important; }
-            .description { font-size: 10pt !important; line-height: 1.25 !important; }
-            .edu-degree { font-size: 11pt !important; }
-            .edu-school { font-size: 10.5pt !important; }
-            .edu-year { font-size: 10pt !important; }
-            .date { font-size: 9.5pt !important; }
-            .location { font-size: 9.5pt !important; }
-            
-            /* Project Card Fonts */
-            .project-card { padding: 1.2mm 2mm !important; margin-bottom: 1.2mm !important; }
-            .project-name { font-size: 9pt !important; margin-bottom: 0.4mm !important; }
-            .project-env { font-size: 8.5pt !important; margin-bottom: 0.2mm !important; }
-            .project-scope { font-size: 8.5pt !important; line-height: 1.2 !important; }
-            
-            .contact-item { font-size: 9.5pt !important; }
-            .skill-list li, .lang-list li { font-size: 9.5pt !important; margin-bottom: 0.7mm !important; }
-            .sidebar-title { font-size: 11.5pt !important; }
-            .personal-label { font-size: 10pt !important; }
-            .personal-item { font-size: 9.5pt !important; }
-            .declaration { font-size: 9.5pt !important; bottom: 10mm !important; }
-            .signature { font-size: 12pt !important; }
-            .photo { width: 45mm !important; height: 45mm !important; }
-            
-            a { color: #2c3e50; text-decoration: none; }
-        }
-        
-        @media screen {
-            .page { max-width: 210mm; }
         }
     </style>
 </head>
-<body>
 
+<body>
     <!-- PRINT CONTROLS (Screen Only) -->
-    <div class="print-controls">
-        <button onclick="window.print()" class="print-btn">🖨️ Download as PDF</button>
+    <div class="print-controls no-pdf">
+        <button id="downloadBtn" onclick="generatePDF()" class="print-btn">📥 Direct Download PDF</button>
+        <button onclick="window.print()" class="print-btn" style="background: #7f8c8d; margin-left: 10px;">🖨️ Print
+            Dialog</button>
         <p class="instructions">
-            <strong>⚠️ IMPORTANT:</strong> Paper: A4 | Margins: Minimum | Scale: 95% | Background: ON
+            <strong>✓ Clickable Links:</strong> All links will work in the downloaded PDF.
         </p>
     </div>
 
@@ -347,15 +382,18 @@
             <!-- SIDEBAR -->
             <div class="page1-sidebar">
                 <div class="photo-box">
-                    <img src="profile-photo.jpg" alt="Anas Rasheed" class="photo" 
-                         onerror="this.style.background='#dce4ec';this.alt='[Photo]'">
+                    <img id="profilePhoto" src="profile-photo.jpg" alt="Anas Rasheed" class="photo"
+                        onerror="this.style.background='#dce4ec';this.alt='[Photo]'">
                 </div>
-                
+
                 <div class="contact-info">
-                    <div class="contact-item">📞 +91 98954 46047</div>
-					<div class="contact-item">✉ <a href="anasrasheed94@gmail.com" target="_blank">anasrasheed94@gmail.com</a></div>
-					<div class="contact-item">🌐 <a href="https://anasrasheed94-cmyk.github.io" target="_blank">anasrasheed94-cmyk.github.io</a></div>
-					<div class="contact-item">💼 <a href="linkedin.com/in/anasrasheed94" target="_blank">linkedin.com/in/anasrasheed94</a></div>
+                    <div class="contact-item">📞 <a href="tel:+919895446047">+91 98954 46047</a></div>
+                    <div class="contact-item">✉ <a href="mailto:anasrasheed94@gmail.com"
+                            target="_blank">anasrasheed94@gmail.com</a></div>
+                    <div class="contact-item">🌐 <a href="https://anasrasheed94-cmyk.github.io"
+                            target="_blank">anasrasheed94-cmyk.github.io</a></div>
+                    <div class="contact-item">💼 <a href="https://www.linkedin.com/in/anas-rasheed94"
+                            target="_blank">linkedin.com/in/anasrasheed94</a></div>
                 </div>
 
                 <div class="sidebar-section">
@@ -372,7 +410,7 @@
                         <li>✓ PostgreSQL / SQLite</li>
                     </ul>
                 </div>
-                
+
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Tools</h3>
                     <ul class="skill-list">
@@ -394,47 +432,49 @@
                         <li>✓ Tamil (Conversational)</li>
                     </ul>
                 </div>
-				<!-- PERSONAL INFO -->
+                <!-- PERSONAL INFO -->
                 <div class="sidebar-section">
                     <h2 class="sidebar-title">Personal Information</h2>
-                     <ul class="lang-list">
-                            <li><b>DOB: 		</b>April 9, 1991</li>
-                            <li><b>Age: 		</b>34 Years</li>
-                            <li><b>Gender: 		</b>Male</li>
-                            <li><b>Nationality:	</b>Indian</li>
-                            <li><b>Status: 		</b>Married</li>
-                            <li><b>Father: 		</b>Abdul Rasheed</li>
-                            <li><b>Mother: 		</b>Javinza</li>
-                            <li><b>Address: 	</b>Yaseen Villa, kottukkal po Anchal, Kollam, Kerala</li>
+                    <ul class="lang-list">
+                        <li><b>DOB: </b>April 9, 1991</li>
+                        <li><b>Age: </b>34 Years</li>
+                        <li><b>Gender: </b>Male</li>
+                        <li><b>Nationality: </b>Indian</li>
+                        <li><b>Status: </b>Married</li>
+                        <li><b>Father: </b>Abdul Rasheed</li>
+                        <li><b>Mother: </b>Javinza</li>
+                        <li><b>Address: </b>Yaseen Villa, kottukkal po Anchal, Kollam, Kerala</li>
                     </ul>
                 </div>
             </div>
-			
 
-        
+
+
             <!-- MAIN CONTENT -->
             <div class="page1-main">
                 <h1 class="name">ANAS RASHEED</h1>
-                
+
                 <div class="section">
                     <h2 class="section-title">Professional Summary</h2>
                     <p class="summary-text">
-                       <b>Lead Developer</b> with <b>10</b> years of experience in designing, developing, and managing <b>desktop, web and mobile apps</b> using 
-					<b> WPF, WinForms, ASP.NET , Xamarin Forms and C#.NET</b>. 
-					Proven expertise in leading development teams, architecting scalable solutions, 
-					and managing full application lifecycles including 
-					<b>MS-SQL, My-SQL, PostgreSQL and SQLite</b>.
-					Adapt to collaborating with cross-functional teams,
-					mentoring developers, and delivering high-quality projects on time while ensuring best coding practices and performance optimization.
-					Proven track record in delivering high-quality Windows, Mobile and web applications, 
-					leveraging strong UI design skills and effective collaboration to drive project success.
-					Committed to achieving results and enhancing user experiences.
+                        <b>Lead Developer</b> with <b>10</b> years of experience in designing, developing, and managing
+                        <b>desktop, web and mobile apps</b> using
+                        <b> WPF, WinForms, ASP.NET , Xamarin Forms and C#.NET</b>.
+                        Proven expertise in leading development teams, architecting scalable solutions,
+                        and managing full application lifecycles including
+                        <b>MS-SQL, My-SQL, PostgreSQL and SQLite</b>.
+                        Adapt to collaborating with cross-functional teams,
+                        mentoring developers, and delivering high-quality projects on time while ensuring best coding
+                        practices and performance optimization.
+                        Proven track record in delivering high-quality Windows, Mobile and web applications,
+                        leveraging strong UI design skills and effective collaboration to drive project success.
+                        Committed to achieving results and enhancing user experiences.
                     </p>
                 </div>
-                
+
                 <div class="section">
                     <h2 class="section-title">Experience</h2>
-                    
+
                     <div class="exp-item">
                         <div class="exp-header">
                             <div class="job-title">Lead Developer</div>
@@ -442,9 +482,10 @@
                         </div>
                         <div class="company">PROMPTTECH GLOBAL PVT LTD</div>
                         <div class="location">Technopark, Trivandrum</div>
-                        <div class="description">Lead enterprise apps using C#.NET, WPF, WinForms, ASP.NET. Manage 5 developers.</div>
+                        <div class="description">Lead enterprise apps using C#.NET, WPF, WinForms, ASP.NET. Manage 5
+                            developers.</div>
                     </div>
-                    
+
                     <div class="exp-item">
                         <div class="exp-header">
                             <div class="job-title">Senior Software Developer</div>
@@ -452,9 +493,10 @@
                         </div>
                         <div class="company">INSPIRONZ IT SOLUTIONS</div>
                         <div class="location">Kundara, Kollam</div>
-                        <div class="description">Developed cross-platform apps using Xamarin, WPF, WinForms, ASP.NET with SQL Server.</div>
+                        <div class="description">Developed cross-platform apps using Xamarin, WPF, WinForms, ASP.NET
+                            with SQL Server.</div>
                     </div>
-                    
+
                     <div class="exp-item">
                         <div class="exp-header">
                             <div class="job-title">Software Developer</div>
@@ -462,9 +504,10 @@
                         </div>
                         <div class="company">PROMPTTECH MIDDLE EAST</div>
                         <div class="location">Ravipuram, Ernakulam</div>
-                        <div class="description">Built Windows desktop apps using C#.NET, WinForms, WPF with SQL and MySQL.</div>
+                        <div class="description">Built Windows desktop apps using C#.NET, WinForms, WPF with SQL and
+                            MySQL.</div>
                     </div>
-                    
+
                     <div class="exp-item">
                         <div class="exp-header">
                             <div class="job-title">Software Developer</div>
@@ -496,72 +539,108 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- ==================== PAGE 2 ==================== -->
+        </div><!-- ==================== PAGE 2 ==================== -->
         <div class="page">
             <div class="page2-content">
-                
-                <!-- PROJECTS - 3 LINE FORMAT -->
-				<div class="section projects-section">
-					<h2 class="section-title">Projects Implemented</h2>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Salon ERP</div>
-						<div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
-						<div class="project-scope">Scope: Desktop ERP for salon management with Appointment scheduling (local + Web-API sync), POS with cash drawer, Service/Package management with room & staff tracking, Inventory (purchase/sales/consumption/damage), HR with commission slabs, and Loyalty cards with barcode scanning—hybrid architecture syncing local/cloud operations.</div>
-					</div>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Laundry ERP</div>
-						<div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
-						<div class="project-scope">Scope: Desktop ERP for laundry operations with billing, delivery scheduling, WhatsApp notifications, and real-time dashboard. Web-API integrated mobile collector app, barcode tag generation & basket scanning for stage-wise tracking (wash/dry/iron/pack), automated customer updates, delivery with proof-of-delivery & payment collection—hybrid cloud-synced architecture.</div>
-					</div>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Accounts & HRM Manager</div>
-						<div class="project-env">Environment: ASP.NET / SQL Server / Crystal Report</div>
-						<div class="project-scope">Scope: Desktop HR & Payroll system with integrated accounting, biometric attendance, configurable leave workflows, real-time payroll (tax/bonus/compliance), and analytics dashboard for headcount, payroll costs & attendance trends—secure role-based architecture supporting multi-branch sync and cross-department data integration.</div>
-					</div>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Hypermarket ERP</div>
-						<div class="project-env">Environment: WPF / SQL Server</div>
-						<div class="project-scope">Scope: Desktop Hypermarket ERP with POS billing, Supplier Management, Inventory Control (batch/expiry/reordering), and Multi-Store Synchronization. Mobile Van Sales module for route/order/delivery tracking via Web-API. Predictive analytics for demand forecasting, inventory alerts & customer insights—enabling data-driven stock optimization and supply chain planning.</div>
-					</div>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Company CRM (prompttechglobal.com)</div>
-						<div class="project-env">Environment: ASP.NET MVC / SQL Server</div>
-						<div class="project-scope">Scope: Web-based CRM for lead capture, qualification & assignment; visual sales pipeline with stage tracking & follow-up reminders; customer interaction history (calls/emails/meetings); and analytics dashboards for conversion rates, productivity & revenue forecasting—supported by role-based access control and data export capabilities.</div>
-					</div>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Mall Management System (rpmall.in)</div>
-						<div class="project-env">Environment: ASP.NET / SQL Server</div>
-						<div class="project-scope">Scope: Web-based Mall Management with shop allocation engine, floor-plan visualization & lease-based rent calculation; Tenant Management (onboarding/contracts/documents); automated Payment Tracking with invoices/late fees; and Occupancy Reporting with vacancy alerts & lease expiry notifications—role-based dashboard for multi-property management.</div>
-					</div>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Cashew Factory</div>
-						<div class="project-env">Environment: ASP.NET / SQL Server</div>
-						<div class="project-scope">Scope: Web-based ERP for cashew processing: Production Planning (shelling/drying/peeling/grading), Workforce Management with piece-rate wages, Quality Control with yield analysis. Multi-Warehouse/Country support with currency conversion, Shipping Management with export docs & customs compliance. Analytics for efficiency, cost-per-grade & profitability insights.</div>
-					</div>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Restaurant Mobile App</div>
-						<div class="project-env">Environment: Xamarin Forms / Web API</div>
-						<div class="project-scope">Scope: Mobile app for dine-in/takeaway with digital menu, online ordering, table reservation & waitlist; order tracking with kitchen status, push notifications, reviews/ratings, location-based branch selection & multi-language/currency support. RESTful API integration with POS/kitchen systems for real-time sync and analytics on order trends & preferences.</div>
-					</div>
-					
-					<div class="project-card">
-						<div class="project-name">📁 Gym Management</div>
-						<div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
-						<div class="project-scope">Scope: Desktop Gym Management with Membership plans (tiered/freeze/renewal), Trainer Scheduling, Workout Tracking with progress logs, Payment Processing with recurring billing & Crystal Reports invoices, biometric/RFID attendance, visitor management & analytics dashboards—role-based interface supporting multi-branch sync and real-time data visibility.</div>
-					</div>
-				</div>
 
-                
+                <!-- PROJECTS - 3 LINE FORMAT -->
+                <div class="section projects-section">
+                    <h2 class="section-title">Projects Implemented</h2>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Salon ERP</div>
+                        <div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
+                        <div class="project-scope">Scope: Desktop ERP for salon management with Appointment scheduling
+                            (local + Web-API sync), POS with cash drawer, Service/Package management with room & staff
+                            tracking, Inventory (purchase/sales/consumption/damage), HR with commission slabs, and
+                            Loyalty cards with barcode scanning—hybrid architecture syncing local/cloud operations.
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Laundry ERP</div>
+                        <div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
+                        <div class="project-scope">Scope: Desktop ERP for laundry operations with billing, delivery
+                            scheduling, WhatsApp notifications, and real-time dashboard. Web-API integrated mobile
+                            collector app, barcode tag generation & basket scanning for stage-wise tracking
+                            (wash/dry/iron/pack), automated customer updates, delivery with proof-of-delivery & payment
+                            collection—hybrid cloud-synced architecture.</div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Accounts & HRM Manager</div>
+                        <div class="project-env">Environment: ASP.NET / SQL Server / Crystal Report</div>
+                        <div class="project-scope">Scope: Desktop HR & Payroll system with integrated accounting,
+                            biometric attendance, configurable leave workflows, real-time payroll
+                            (tax/bonus/compliance), and analytics dashboard for headcount, payroll costs & attendance
+                            trends—secure role-based architecture supporting multi-branch sync and cross-department data
+                            integration.</div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Hypermarket ERP</div>
+                        <div class="project-env">Environment: WPF / SQL Server</div>
+                        <div class="project-scope">Scope: Desktop Hypermarket ERP with POS billing, Supplier Management,
+                            Inventory Control (batch/expiry/reordering), and Multi-Store Synchronization. Mobile Van
+                            Sales module for route/order/delivery tracking via Web-API. Predictive analytics for demand
+                            forecasting, inventory alerts & customer insights—enabling data-driven stock optimization
+                            and supply chain planning.</div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Company CRM (<a href="https://prompttechglobal.com"
+                                target="_blank">prompttechglobal.com</a>)</div>
+                        <div class="project-env">Environment: ASP.NET MVC / SQL Server</div>
+                        <div class="project-scope">Scope: Web-based CRM for lead capture, qualification & assignment;
+                            visual sales pipeline with stage tracking & follow-up reminders; customer interaction
+                            history (calls/emails/meetings); and analytics dashboards for conversion rates, productivity
+                            & revenue forecasting—supported by role-based access control and data export capabilities.
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Mall Management System (<a href="https://rpmall.in"
+                                target="_blank">rpmall.in</a>)</div>
+                        <div class="project-env">Environment: ASP.NET / SQL Server</div>
+                        <div class="project-scope">Scope: Web-based Mall Management with shop allocation engine,
+                            floor-plan visualization & lease-based rent calculation; Tenant Management
+                            (onboarding/contracts/documents); automated Payment Tracking with invoices/late fees; and
+                            Occupancy Reporting with vacancy alerts & lease expiry notifications—role-based dashboard
+                            for multi-property management.</div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Cashew Factory</div>
+                        <div class="project-env">Environment: ASP.NET / SQL Server</div>
+                        <div class="project-scope">Scope: Web-based ERP for cashew processing: Production Planning
+                            (shelling/drying/peeling/grading), Workforce Management with piece-rate wages, Quality
+                            Control with yield analysis. Multi-Warehouse/Country support with currency conversion,
+                            Shipping Management with export docs & customs compliance. Analytics for efficiency,
+                            cost-per-grade & profitability insights.</div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Restaurant Mobile App</div>
+                        <div class="project-env">Environment: Xamarin Forms / Web API</div>
+                        <div class="project-scope">Scope: Mobile app for dine-in/takeaway with digital menu, online
+                            ordering, table reservation & waitlist; order tracking with kitchen status, push
+                            notifications, reviews/ratings, location-based branch selection & multi-language/currency
+                            support. RESTful API integration with POS/kitchen systems for real-time sync and analytics
+                            on order trends & preferences.</div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-name">📁 Gym Management</div>
+                        <div class="project-env">Environment: WPF / WinForms / SQL Server / Crystal Report</div>
+                        <div class="project-scope">Scope: Desktop Gym Management with Membership plans
+                            (tiered/freeze/renewal), Trainer Scheduling, Workout Tracking with progress logs, Payment
+                            Processing with recurring billing & Crystal Reports invoices, biometric/RFID attendance,
+                            visitor management & analytics dashboards—role-based interface supporting multi-branch sync
+                            and real-time data visibility.</div>
+                    </div>
+                </div>
+
+
 
                 <!-- DECLARATION -->
                 <div class="declaration">
@@ -572,5 +651,76 @@
         </div>
     </div>
 
+    <script>
+        // Load profile photo from external data if available
+        if (typeof profilePhotoBase64 !== 'undefined') {
+            document.getElementById('profilePhoto').src = profilePhotoBase64;
+        }
+
+        function generatePDF() {
+            const element = document.querySelector('.resume-container');
+            const btn = document.getElementById('downloadBtn');
+
+            const isLocal = window.location.protocol === 'file:';
+
+            // Visual feedback
+            btn.innerHTML = "⏳ Generating...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            const opt = {
+                margin: 0,
+                filename: 'Anas_Rasheed_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    letterRendering: true,
+                    logging: false,
+                    scrollY: 0
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: 'css' }
+            };
+
+            // Attempt to generate
+            html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdf) {
+                const totalPages = pdf.internal.getNumberOfPages();
+                if (totalPages > 2) {
+                    for (let i = totalPages; i > 2; i--) {
+                        pdf.deletePage(i);
+                    }
+                }
+            }).save().then(() => {
+                btn.innerHTML = "📥 Direct Download PDF";
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }).catch(err => {
+                console.warn("Direct download restricted:", err);
+                resetBtn();
+                handleExportError();
+            });
+
+            // Helper to reset button
+            function resetBtn() {
+                btn.innerHTML = "📥 Direct Download PDF";
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }
+
+            // Helper to handle the common local file block
+            function handleExportError() {
+                const msg = "📥 Local Security Block Detected\n\n" +
+                    "Browsers often block automatic downloads when opening files directly from a folder (file://).\n\n" +
+                    "Would you like to use the Print Dialog instead? (Select 'Save as PDF' in the printer list)";
+
+                if (confirm(msg)) {
+                    window.print();
+                }
+            }
+        }
+    </script>
 </body>
+
 </html>
